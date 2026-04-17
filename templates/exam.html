@@ -2,6 +2,13 @@
 {% block title %}Exam — VisionVerse{% endblock %}
 {% block content_class %}wide{% endblock %}
 
+{% block head %}
+<!-- MediaPipe Hands — client-side gesture recognition (works on cloud deploys like Render) -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+{% endblock %}
+
 {% block content %}
 <div class="exam-layout" id="exam-area">
     <!-- LEFT: Question Panel -->
@@ -27,6 +34,9 @@
     <!-- RIGHT: Camera / Controls -->
     <div class="exam-camera-panel">
         <div class="card hidden" id="camera-section">
+            <!-- Hidden video for getUserMedia, Canvas shows processed frames with landmarks -->
+            <video id="gesture-video" autoplay playsinline muted style="display:none"></video>
+            <canvas id="gesture-canvas" style="width:100%;border-radius:10px;margin-bottom:10px;transform:scaleX(-1)"></canvas>
 
             <div class="finger-count" id="finger-display">—</div>
             <!-- Gesture guide -->
@@ -66,11 +76,13 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="{{ url_for('static', filename='js/gesture_client.js') }}"></script>
 <script>
     var socket = io();
     var EXAM_MODE = '{{ session.get("exam_mode", "gesture") }}';
     var questions = [], currentIdx = 0, answers = {};
     var examStartTime = Date.now();
+    var gestureEngine = null;
 
     async function init() {
         var res = await fetch('/api/questions');
@@ -79,18 +91,65 @@
 
         if (EXAM_MODE === 'gesture') {
             document.getElementById('camera-section').classList.remove('hidden');
-            // Emit start FIRST so the server marks the engine active, then
-            // set the img src a tick later to avoid the race condition.
-            socket.emit('toggle_camera', { action: 'start' });
-            setTimeout(function () {
-                var mainCam = document.getElementById('camera-feed');
-                if (mainCam) mainCam.src = '/video_feed?' + Date.now();
-                var sbCam = document.getElementById('sb-camera');
-                if (sbCam) {
-                    sbCam.classList.remove('hidden');
-                    document.getElementById('sb-camera-feed').src = '/video_feed?' + Date.now();
+
+            // ── Client-side gesture engine (works on Render / any cloud) ──
+            gestureEngine = new ClientGestureEngine({
+                onGestureInput: function (option) {
+                    var map = { 1: 'A', 2: 'B', 3: 'C', 4: 'D' };
+                    var key = map[option];
+                    if (key) {
+                        var q = questions[currentIdx];
+                        var isNewSelection = (answers[q.id] !== key);
+                        document.getElementById('finger-display').textContent = option;
+                        selectOption(key);
+                        document.getElementById('status-bar').textContent =
+                            '✅ Option ' + key + ' selected — show 👍 to confirm & move on';
+                        if (isNewSelection) {
+                            speak('Option ' + key + ' selected. Show thumbs up to confirm and move on.');
+                        }
+                    }
+                },
+                onGestureNext: function () {
+                    document.getElementById('finger-display').textContent = '👍';
+                    if (currentIdx < questions.length - 1) {
+                        document.getElementById('status-bar').textContent = '➡️ Moving to next question…';
+                        nextQuestion();
+                    } else {
+                        document.getElementById('status-bar').textContent = '🏁 Last question — submitting exam…';
+                        setTimeout(submitExam, 800);
+                    }
+                },
+                onGesturePrev: function () {
+                    document.getElementById('finger-display').textContent = '5';
+                    if (currentIdx > 0) {
+                        document.getElementById('status-bar').textContent = '⬅️ Moving to previous question…';
+                        prevQuestion();
+                    } else {
+                        document.getElementById('status-bar').textContent = '⚠️ Already on the first question';
+                        speak('Already on the first question');
+                    }
+                },
+                onFingerDisplay: function (text) {
+                    document.getElementById('finger-display').textContent = text;
+                },
+                onError: function (msg) {
+                    document.getElementById('status-bar').textContent = '⚠️ Gesture engine error: ' + msg;
                 }
-            }, 400);
+            });
+
+            var videoEl  = document.getElementById('gesture-video');
+            var canvasEl = document.getElementById('gesture-canvas');
+            var ok = await gestureEngine.init(videoEl, canvasEl);
+            if (ok) {
+                gestureEngine.start();
+            } else {
+                document.getElementById('status-bar').textContent =
+                    '⚠️ Could not start gesture engine. Please check camera permissions.';
+            }
+
+            // Show sidebar camera
+            var sbCam = document.getElementById('sb-camera');
+            if (sbCam) sbCam.classList.remove('hidden');
         } else {
             document.getElementById('voice-section').classList.remove('hidden');
             document.getElementById('transcript-box').classList.remove('hidden');
@@ -157,7 +216,7 @@
 
     async function submitExam() {
         var timeTaken = Math.round((Date.now() - examStartTime) / 1000);
-        socket.emit('toggle_camera', { action: 'stop' });
+        if (gestureEngine) gestureEngine.stop();
 
         var res = await fetch('/api/submit', {
             method: 'POST',
@@ -169,53 +228,6 @@
             window.location.href = '/results';
         }
     }
-
-    // ── Gesture: finger count → select answer (NO auto-advance) ────────────
-    socket.on('gesture_input', function (data) {
-        if (EXAM_MODE !== 'gesture') return;
-        var map = { 1: 'A', 2: 'B', 3: 'C', 4: 'D' };
-        var key = map[data.option];
-        if (key) {
-            var q = questions[currentIdx];
-            var isNewSelection = (answers[q.id] !== key);
-
-            document.getElementById('finger-display').textContent = data.option;
-            selectOption(key);
-            document.getElementById('status-bar').textContent =
-                '✅ Option ' + key + ' selected — show 👍 to confirm & move on';
-
-            // Only play the audio if this is a newly selected option, avoiding repeated audio overlapping
-            if (isNewSelection) {
-                speak('Option ' + key + ' selected. Show thumbs up to confirm and move on.');
-            }
-        }
-    });
-
-    // ── Gesture: thumb up → next question or submit exam ────────────────
-    socket.on('gesture_next', function () {
-        if (EXAM_MODE !== 'gesture') return;
-        document.getElementById('finger-display').textContent = '👍';
-        if (currentIdx < questions.length - 1) {
-            document.getElementById('status-bar').textContent = '➡️ Moving to next question…';
-            nextQuestion();
-        } else {
-            document.getElementById('status-bar').textContent = '🏁 Last question — submitting exam…';
-            setTimeout(submitExam, 800);
-        }
-    });
-
-    // ── Gesture: 5 fingers → previous question ──────────────────────────
-    socket.on('gesture_prev', function () {
-        if (EXAM_MODE !== 'gesture') return;
-        document.getElementById('finger-display').textContent = '5';
-        if (currentIdx > 0) {
-            document.getElementById('status-bar').textContent = '⬅️ Moving to previous question…';
-            prevQuestion();
-        } else {
-            document.getElementById('status-bar').textContent = '⚠️ Already on the first question';
-            speak('Already on the first question');
-        }
-    });
 
     // ── Voice Recognition ────────────────────────────────────────────────
     var recognition;
