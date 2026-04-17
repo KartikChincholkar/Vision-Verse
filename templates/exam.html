@@ -36,7 +36,8 @@
         <div class="card hidden" id="camera-section">
             <!-- Hidden video for getUserMedia, Canvas shows processed frames with landmarks -->
             <video id="gesture-video" autoplay playsinline muted style="display:none"></video>
-            <canvas id="gesture-canvas" style="width:100%;border-radius:10px;margin-bottom:10px;transform:scaleX(-1)"></canvas>
+            <canvas id="gesture-canvas"
+                style="width:100%;border-radius:10px;margin-bottom:10px;transform:scaleX(-1)"></canvas>
 
             <div class="finger-count" id="finger-display">—</div>
             <!-- Gesture guide -->
@@ -45,9 +46,9 @@
                 <b style="color:var(--ink)">Gesture Guide</b><br>
                 👆 1 finger &rarr; Option A<br>
                 ✌️ 2 fingers &rarr; Option B<br>
-                🤟 3 fingers &rarr; Option C<br>
+                🤘 3 fingers &rarr; Option C<br>
                 🖖 4 fingers &rarr; Option D<br>
-                🖐️ 5 fingers &rarr; Previous Question<br>
+                ✋ Open palm &rarr; Previous Question<br>
                 ✊ Fist &rarr; Next / Submit
             </div>
         </div>
@@ -137,7 +138,7 @@
                 }
             });
 
-            var videoEl  = document.getElementById('gesture-video');
+            var videoEl = document.getElementById('gesture-video');
             var canvasEl = document.getElementById('gesture-canvas');
             var ok = await gestureEngine.init(videoEl, canvasEl);
             if (ok) {
@@ -222,7 +223,7 @@
     async function submitExam() {
         window.speechSynthesis.cancel();  // Stop any ongoing TTS immediately
         EXAM_MODE = null;  // Prevent voice recognition from auto-restarting
-        if (recognition) { try { recognition.stop(); } catch (e) {} recognition = null; }
+        if (recognition) { try { recognition.stop(); } catch (e) { } recognition = null; }
         var timeTaken = Math.round((Date.now() - examStartTime) / 1000);
         if (gestureEngine) gestureEngine.stop();
 
@@ -241,7 +242,7 @@
     window.addEventListener('beforeunload', function () {
         EXAM_MODE = null;
         window.speechSynthesis.cancel();
-        if (recognition) { try { recognition.stop(); } catch (e) {} }
+        if (recognition) { try { recognition.stop(); } catch (e) { } }
         if (gestureEngine) gestureEngine.stop();
     });
 
@@ -300,7 +301,7 @@
             document.getElementById('status-bar').textContent = '⚠️ Voice error: ' + e.error;
         };
 
-        try { recognition.start(); } catch (e) {}
+        try { recognition.start(); } catch (e) { }
     }
 
     function _restartRecognition() {
@@ -316,7 +317,7 @@
         // Pause recognition while TTS plays to prevent mic interference
         _isSpeaking = true;
         if (recognition && EXAM_MODE === 'voice') {
-            try { recognition.stop(); } catch (e) {}
+            try { recognition.stop(); } catch (e) { }
         }
         var u = new SpeechSynthesisUtterance(text);
         u.onend = function () {
