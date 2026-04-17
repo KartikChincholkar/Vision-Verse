@@ -221,6 +221,8 @@
 
     async function submitExam() {
         window.speechSynthesis.cancel();  // Stop any ongoing TTS immediately
+        EXAM_MODE = null;  // Prevent voice recognition from auto-restarting
+        if (recognition) { try { recognition.stop(); } catch (e) {} recognition = null; }
         var timeTaken = Math.round((Date.now() - examStartTime) / 1000);
         if (gestureEngine) gestureEngine.stop();
 
@@ -234,6 +236,14 @@
             window.location.href = '/results';
         }
     }
+
+    // Stop mic + TTS when page is closed or navigated away
+    window.addEventListener('beforeunload', function () {
+        EXAM_MODE = null;
+        window.speechSynthesis.cancel();
+        if (recognition) { try { recognition.stop(); } catch (e) {} }
+        if (gestureEngine) gestureEngine.stop();
+    });
 
     // ── Voice Recognition ────────────────────────────────────────────────
     var recognition;
