@@ -1,0 +1,97 @@
+1. Which layer in a CNN is primarily responsible for reducing the spatial dimensions (width and
+height) of the input data?
+A) Convolutional Layer
+B) Activation Layer (ReLU)
+C) Pooling Layer (e.g., Max Pooling)
+D) Fully Connected Layer
+Answer: C
+2. When classifying environmental sounds, why is audio often converted into a Mel Spectrogram?
+A) To reduce the file size of the audio
+B) To transform the 1D audio signal into a 2D image-like representation for CNNs
+C) To remove background noise automatically
+D) To convert the audio into text
+Answer: B
+3. In Transfer Learning, what does "freezing" the base model layers (like MobileNetV2) achieve?
+A) It stops the model from making predictions
+B) It prevents the pre-trained weights from being updated during training
+C) It increases the learning rate automatically
+D) It deletes the weights to start from scratch
+Answer: B
+4. Which activation function is most commonly used in the final layer of a multi-class classification
+model to output probabilities?
+A) ReLU
+B) Sigmoid
+C) Tanh
+D) Softmax
+Answer: D
+5. What is the main advantage of MobileNetV2 over larger models like ResNet50 for a Smart Home
+Assistant?
+A) It has higher accuracy on all datasets
+B) It is lightweight and optimized for real-time performance on mobile/embedded devices
+C) It does not require any training data
+D) It only works with audio data
+Answer: B
+### Part 2: Web Scraping & Pagination
+6. Which pagination type allows you to "jump" directly to Page 10 by simply changing a number in
+the web address?
+A) Infinite Scroll
+B) Cursor-Based Pagination
+C) URL-Based Pagination
+D) "Load More" Buttons
+Answer: C
+7. Why is "Infinite Scroll" more difficult to scrape than standard numbered pagination?
+A) It uses higher encryption
+B) The URL stays the same, and content only loads when a scroll event is triggered
+C) It doesn't contain any HTML
+D) It requires a paid API key
+Answer: B
+8. In "Cursor-Based Pagination," what is a "cursor"?
+A) The mouse pointer on the screen
+B) A mathematical offset (e.g., $+10$)
+C) A unique ID or token that acts as a "bookmark" for the next set of data
+D) A JavaScript function that clicks buttons
+Answer: C
+9. Which tool is best suited for scraping a website that uses "Load More" buttons?
+A) BeautifulSoup (only)
+B) Requests (only)
+C) Selenium or Playwright
+D) Pandas
+Answer: C
+10. What is the main benefit of Client-Side Pagination for a user?
+A) It keeps the server from crashing
+B) It allows for instant page switching because all data is pre-loaded in the browser
+C) It hides the data from web scrapers
+D) It makes the initial page load much faster
+Answer: B
+### Part 3: Flask & REST APIs
+11. In your Flask code, what does jsonify(rates) do?
+A) It prints the rates to the console
+B) It converts a Python dictionary into a JSON-formatted response
+C) It saves the rates to a database
+D) It checks if the rates are valid numbers
+Answer: B
+12. Which HTTP method is typically used to "retrieve" data from a REST API endpoint like /rates?
+A) POST
+B) DELETE
+C) GET
+D) PUT
+Answer: C
+13. What happens if you run a Flask script and see ModuleNotFoundError: No module named
+'flask'?
+A) Your code has a syntax error
+B) Flask is not installed in your current Python environment
+C) The server is already running on that port
+D) Your Python version is too old
+Answer: B
+14. In a REST API, what does the status code 404 represent?
+A) Unauthorized access
+B) Success
+C) Internal Server Error
+D) Resource Not Found
+Answer: D
+15. What is the purpose of the @app.route("/convert/<from_currency>/...") decorator?
+A) To encrypt the currency data
+B) To map a specific URL pattern to a Python function
+C) To create a new database table
+D) To install the Flask library
+Answer: B

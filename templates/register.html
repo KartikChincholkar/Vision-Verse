@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}Register — VisionVerse{% endblock %}
+
+{% block body %}
+<div class="auth-page">
+    <div class="auth-card card">
+        <div class="text-center">
+            <span class="section-icon">🎓</span>
+            <h1 class="heading-xl">Create your account</h1>
+            <p class="subtitle">Join VisionVerse — accessible examinations for everyone.</p>
+        </div>
+
+        <form id="register-form" novalidate>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" class="form-control" placeholder="e.g. John Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Min 6 characters" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" class="form-control" placeholder="Re-enter password"
+                        required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="disability_type">Disability Type</label>
+                    <select id="disability_type" class="form-control" required>
+                        <option value="">Select type</option>
+                        <option value="Motor Impairment">Motor Impairment</option>
+                        <option value="Speech Impairment">Speech Impairment</option>
+                        <option value="Visual Impairment">Visual Impairment</option>
+                        <option value="None">None</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" class="form-control" placeholder="+91 XXXXX XXXXX" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="register-btn">Create Account</button>
+        </form>
+
+        <p class="auth-link">Already have an account? <a href="/login">Login here</a></p>
+    </div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+
+<script>
+    function showToast(msg, type) {
+        type = type || 'info';
+        var icons = { success: '✓', error: '✗', info: 'ℹ' };
+        var c = document.getElementById('toast-container');
+        var t = document.createElement('div');
+        t.className = 'toast ' + type;
+        t.innerHTML = '<span>' + (icons[type] || 'ℹ') + '</span> ' + msg;
+        c.appendChild(t);
+        setTimeout(function () { t.style.opacity = '0'; setTimeout(function () { t.remove(); }, 300); }, 3500);
+    }
+
+    document.getElementById('register-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var fields = ['name', 'email', 'password', 'confirm_password', 'disability_type', 'dob', 'phone'];
+        var data = {};
+        for (var i = 0; i < fields.length; i++) {
+            var f = fields[i];
+            var el = document.getElementById(f);
+            if (!el.value.trim()) {
+                showToast('Please fill in ' + f.replace(/_/g, ' '), 'error');
+                el.focus();
+                return;
+            }
+            data[f] = el.value.trim();
+        }
+        if (data.password.length < 6) { showToast('Password must be at least 6 characters', 'error'); return; }
+        if (data.password !== data.confirm_password) { showToast('Passwords do not match', 'error'); return; }
+
+        var btn = document.getElementById('register-btn');
+        btn.disabled = true; btn.textContent = 'Creating...';
+
+        try {
+            var res = await fetch('/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            var result = await res.json();
+            if (result.status === 'success') {
+                showToast(result.message, 'success');
+                alert('Account Created!\\n\\nYour Student ID is: ' + result.student_id + '\\n\\nPlease note this down. You can log in using this ID or your email.');
+                window.location.href = '/login';
+            } else {
+                showToast(result.message || 'Registration failed', 'error');
+                btn.disabled = false; btn.textContent = 'Create Account';
+            }
+        } catch (err) {
+            showToast('Network error — please try again', 'error');
+            btn.disabled = false; btn.textContent = 'Create Account';
+        }
+    });
+</script>
+{% endblock %}

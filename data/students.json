@@ -1,0 +1,42 @@
+{
+  "STU002": {
+    "id": "STU002",
+    "name": "Kartik Chincholkar",
+    "email": "kartik@gmail.com",
+    "password_hash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+    "disability_type": "None",
+    "dob": "2002-01-01",
+    "phone": "9999999998",
+    "registered_at": "2026-04-08T10:00:00"
+  },
+  "STU003": {
+    "id": "STU003",
+    "name": "Ayush Kumar Mishra",
+    "email": "ayush@gmail.com",
+    "password_hash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+    "disability_type": "None",
+    "dob": "2002-01-01",
+    "phone": "9999999997",
+    "registered_at": "2026-04-08T10:00:00"
+  },
+  "STU004": {
+    "id": "STU004",
+    "name": "Ashutosh",
+    "email": "ashu@gmail.com",
+    "password_hash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+    "disability_type": "None",
+    "dob": "2002-01-01",
+    "phone": "9999999996",
+    "registered_at": "2026-04-08T10:00:00"
+  },
+  "STU001": {
+    "id": "STU001",
+    "name": "Raghava Srivastava",
+    "email": "raghava@gmail.com",
+    "password_hash": "38a3490245bf0765523fd9170f633883823fa7c759eb3280f8f2f2527c48557d",
+    "disability_type": "Motor Impairment",
+    "dob": "2003-08-05",
+    "phone": "9999999999",
+    "registered_at": "2026-04-08T10:30:51.053334"
+  }
+}

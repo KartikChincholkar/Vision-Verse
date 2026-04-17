@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}VisionVerse{% endblock %}</title>
+    <meta name="description" content="AI-powered accessible examination platform for students with disabilities.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    {% block head %}{% endblock %}
+</head>
+<script>
+window.addEventListener("load", () => {
+    const loader = document.getElementById("app-loader");
+
+    setTimeout(() => {
+        loader.classList.add("hidden");
+    }, 1200); // delay for effect
+});
+</script>
+<body>
+    <div id="app-loader">
+    <div class="loader-wrapper">
+
+        <!-- ROTATING RING -->
+        <div class="loader-ring">
+
+            <!-- CIRCULAR TEXT -->
+            <svg class="circle-text" viewBox="0 0 200 200">
+                <defs>
+                    <path id="textPath"
+                        d="M 100,100
+                           m -75,0
+                           a 75,75 0 1,1 150,0
+                           a 75,75 0 1,1 -150,0" />
+                </defs>
+
+                <text fill="white" font-size="24" letter-spacing="30">
+                    <textPath href="#textPath">
+                        VisionVerse 
+                    </textPath>
+                </text>
+            </svg>
+
+            <!-- 🔥 ICONS WRAPPER (rotates opposite) -->
+            <div class="icons-rotate">
+
+                <div class="loader-item hand">🖐️</div>
+                <div class="loader-item pen">✏️</div>
+                <div class="loader-item paper">📄</div>
+                <div class="loader-item laptop">💻</div>
+
+            </div>
+
+        </div>
+
+        <!-- CENTER LOGO -->
+        <div class="loader-center">
+            <img src="/static/images/logo.png" alt="VisionVerse">
+        </div>
+
+    </div>
+
+    <p class="loader-text">Loading VisionVerse...</p>
+</div>
+    {% block body %}
+    <div class="app-layout">
+        <main class="main-content">
+            <div class="content-wrapper {% block content_class %}{% endblock %}">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="heading-xl">⚡ VisionVerse</div>
+            <div class="sidebar-avatar" id="sb-avatar">--</div>
+            <div class="sidebar-name" id="sb-name">Student</div>
+            <div class="sidebar-email" id="sb-email">—</div>
+
+            <div class="sidebar-meta">
+                <div class="sidebar-meta-item">
+                    <span class="meta-label">Student ID</span>
+                    <span class="meta-value" id="sb-id">—</span>
+                </div>
+                <div class="sidebar-meta-item">
+                    <span class="meta-label">Disability</span>
+                    <span class="meta-value" id="sb-disability">—</span>
+                </div>
+                <div class="sidebar-meta-item">
+                    <span class="meta-label">Exam Mode</span>
+                    <span class="meta-value" id="sb-mode">—</span>
+                </div>
+                <div class="sidebar-meta-item">
+                    <span class="meta-label">Status</span>
+                    <span class="meta-value" id="sb-status">
+                        <span class="badge badge-yellow">Not Started</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="sidebar-timer hidden" id="sb-timer">00:00</div>
+
+            <div class="sidebar-camera hidden" id="sb-camera">
+                <img id="sb-camera-feed" src="" alt="Camera feed">
+            </div>
+
+            <div class="sidebar-mic hidden" id="sb-mic">
+                <span class="pulse-dot cyan"></span>
+                Microphone Active
+            </div>
+
+            <div style="margin-top: auto;">
+                <a href="/logout" class="btn btn-danger btn-block btn-sm">Logout</a>
+            </div>
+        </aside>
+    </div>
+    {% endblock %}
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+    {% block scripts %}{% endblock %}
+
+    <script>
+        function showToast(message, type) {
+            type = type || 'info';
+            var icons = {success: '✓', error: '✗', info: 'ℹ'};
+            var container = document.getElementById('toast-container');
+            var toast = document.createElement('div');
+            toast.className = 'toast ' + type;
+            toast.innerHTML = '<span>' + (icons[type] || 'ℹ') + '</span> ' + message;
+            container.appendChild(toast);
+            setTimeout(function() { toast.style.opacity = '0'; setTimeout(function() { toast.remove(); }, 300); }, 3500);
+        }
+    </script>
+</body>
+
+</html>

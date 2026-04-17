@@ -1,0 +1,10 @@
+flask
+flask-socketio
+flask-session
+eventlet
+opencv-python-headless
+mediapipe>=0.10.9
+gunicorn
+bcrypt
+openpyxl
+pdfplumber

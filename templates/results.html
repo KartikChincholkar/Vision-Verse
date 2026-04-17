@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Results — VisionVerse{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="result-hero">
+        <div class="score-circle" id="score-circle">
+            <span class="score-num" id="score-num">—</span>
+            <span class="score-total" id="score-total">/ 0</span>
+        </div>
+        <h1 class="heading-xl">Exam Complete!</h1>
+        <p class="subtitle" id="time-display" style="margin-bottom:8px">—</p>
+        <span class="result-badge badge" id="result-badge">—</span>
+    </div>
+
+    <div class="result-breakdown" id="breakdown-list"></div>
+
+    <div class="result-actions mt-3">
+        <a href="/home" class="btn btn-secondary" style="flex:1">🔁 Retake Exam</a>
+        <a href="/logout" class="btn btn-danger" style="flex:1">🚪 Logout</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    (function () {
+        var result = {{ session.get('last_result', {}) | tojson
+    }};
+    if (!result || (!result.score && result.score !== 0)) {
+        document.querySelector('.card').innerHTML =
+            '<div class="text-center">' +
+            '<span class="section-icon">🤔</span>' +
+            '<h1 class="heading-xl">No Results Yet</h1>' +
+            '<p class="subtitle">You haven\'t completed an exam yet.</p>' +
+            '<a href="/home" class="btn btn-primary" style="max-width:300px;margin:0 auto">Go to Home</a>' +
+            '</div>';
+        return;
+    }
+
+    document.getElementById('score-num').textContent = result.score;
+    document.getElementById('score-total').textContent = '/ ' + result.total;
+
+    var mins = Math.floor(result.time_taken / 60);
+    var secs = result.time_taken % 60;
+    document.getElementById('time-display').textContent = 'Time taken: ' + mins + 'm ' + secs + 's';
+
+    var badge = document.getElementById('result-badge');
+    badge.textContent = result.badge;
+    if (result.badge === 'Excellent') badge.classList.add('badge-green');
+    else if (result.badge === 'Good') badge.classList.add('badge-cyan');
+    else badge.classList.add('badge-yellow');
+
+    if (result.percentage >= 80) document.getElementById('score-circle').style.borderColor = 'var(--green)';
+    else if (result.percentage < 50) document.getElementById('score-circle').style.borderColor = 'var(--red)';
+
+    var list = document.getElementById('breakdown-list');
+    for (var i = 0; i < result.breakdown.length; i++) {
+        var item = result.breakdown[i];
+        var icon = item.is_correct ? '✅' : '❌';
+        var studentAns = item.student_answer || '—';
+        var ansColor = item.is_correct ? 'var(--green)' : 'var(--red)';
+
+        var div = document.createElement('div');
+        div.className = 'result-item';
+        div.innerHTML =
+            '<div class="ri-num">' + (i + 1) + '</div>' +
+            '<div class="ri-body">' +
+            '<div class="ri-q">' + item.question + '</div>' +
+            '<div class="ri-answers">' +
+            'Your answer: <span style="color:' + ansColor + '">' + studentAns + '</span>' +
+            '&nbsp;|&nbsp; Correct: <span style="color:var(--green)">' + item.correct + '</span>' +
+            '</div>' +
+            '</div>' +
+            '<div class="ri-icon">' + icon + '</div>';
+        list.appendChild(div);
+    }
+}) ();
+</script>
+{% endblock %}

@@ -1,0 +1,1925 @@
+[
+  {
+    "result_id": "7f7429a1",
+    "student_id": "DBG001",
+    "student_name": "Debug Tester",
+    "exam_mode": "voice",
+    "score": 7,
+    "total": 10,
+    "percentage": 70,
+    "badge": "Good",
+    "time_taken": 160,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "What is the capital of France?",
+        "options": {
+          "A": "Berlin",
+          "B": "Madrid",
+          "C": "Paris",
+          "D": "Rome"
+        },
+        "correct": "C",
+        "student_answer": "B",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "question": "Which planet is known as the Red Planet?",
+        "options": {
+          "A": "Venus",
+          "B": "Mars",
+          "C": "Jupiter",
+          "D": "Saturn"
+        },
+        "correct": "B",
+        "student_answer": "A",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "question": "What is the chemical symbol for water?",
+        "options": {
+          "A": "CO2",
+          "B": "NaCl",
+          "C": "H2O",
+          "D": "O2"
+        },
+        "correct": "C",
+        "student_answer": "A",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "question": "Who painted the Mona Lisa?",
+        "options": {
+          "A": "Vincent van Gogh",
+          "B": "Pablo Picasso",
+          "C": "Michelangelo",
+          "D": "Leonardo da Vinci"
+        },
+        "correct": "D",
+        "student_answer": "D",
+        "is_correct": true
+      },
+      {
+        "id": 5,
+        "question": "What is 15 multiplied by 8?",
+        "options": {
+          "A": "100",
+          "B": "115",
+          "C": "120",
+          "D": "125"
+        },
+        "correct": "C",
+        "student_answer": "C",
+        "is_correct": true
+      },
+      {
+        "id": 6,
+        "question": "Which gas do plants absorb from the atmosphere?",
+        "options": {
+          "A": "Oxygen",
+          "B": "Nitrogen",
+          "C": "Carbon Dioxide",
+          "D": "Hydrogen"
+        },
+        "correct": "C",
+        "student_answer": "C",
+        "is_correct": true
+      },
+      {
+        "id": 7,
+        "question": "What is the largest ocean on Earth?",
+        "options": {
+          "A": "Atlantic Ocean",
+          "B": "Indian Ocean",
+          "C": "Arctic Ocean",
+          "D": "Pacific Ocean"
+        },
+        "correct": "D",
+        "student_answer": "D",
+        "is_correct": true
+      },
+      {
+        "id": 8,
+        "question": "In which year did World War II end?",
+        "options": {
+          "A": "1943",
+          "B": "1945",
+          "C": "1947",
+          "D": "1950"
+        },
+        "correct": "B",
+        "student_answer": "B",
+        "is_correct": true
+      },
+      {
+        "id": 9,
+        "question": "What is the powerhouse of the cell?",
+        "options": {
+          "A": "Nucleus",
+          "B": "Ribosome",
+          "C": "Mitochondria",
+          "D": "Golgi Apparatus"
+        },
+        "correct": "C",
+        "student_answer": "C",
+        "is_correct": true
+      },
+      {
+        "id": 10,
+        "question": "Which element has the atomic number 1?",
+        "options": {
+          "A": "Helium",
+          "B": "Hydrogen",
+          "C": "Lithium",
+          "D": "Oxygen"
+        },
+        "correct": "B",
+        "student_answer": "B",
+        "is_correct": true
+      }
+    ],
+    "submitted_at": "2026-03-13T12:51:42.930971"
+  },
+  {
+    "result_id": "2f2c6d64",
+    "student_id": "T001",
+    "student_name": "Test User",
+    "exam_mode": null,
+    "score": 0,
+    "total": 10,
+    "percentage": 0,
+    "badge": "Needs Improvement",
+    "time_taken": 45,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "What is the capital of France?",
+        "options": {
+          "A": "Berlin",
+          "B": "Madrid",
+          "C": "Paris",
+          "D": "Rome"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "question": "Which planet is known as the Red Planet?",
+        "options": {
+          "A": "Venus",
+          "B": "Mars",
+          "C": "Jupiter",
+          "D": "Saturn"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "question": "What is the chemical symbol for water?",
+        "options": {
+          "A": "CO2",
+          "B": "NaCl",
+          "C": "H2O",
+          "D": "O2"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "question": "Who painted the Mona Lisa?",
+        "options": {
+          "A": "Vincent van Gogh",
+          "B": "Pablo Picasso",
+          "C": "Michelangelo",
+          "D": "Leonardo da Vinci"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "question": "What is 15 multiplied by 8?",
+        "options": {
+          "A": "100",
+          "B": "115",
+          "C": "120",
+          "D": "125"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "question": "Which gas do plants absorb from the atmosphere?",
+        "options": {
+          "A": "Oxygen",
+          "B": "Nitrogen",
+          "C": "Carbon Dioxide",
+          "D": "Hydrogen"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "question": "What is the largest ocean on Earth?",
+        "options": {
+          "A": "Atlantic Ocean",
+          "B": "Indian Ocean",
+          "C": "Arctic Ocean",
+          "D": "Pacific Ocean"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "question": "In which year did World War II end?",
+        "options": {
+          "A": "1943",
+          "B": "1945",
+          "C": "1947",
+          "D": "1950"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "question": "What is the powerhouse of the cell?",
+        "options": {
+          "A": "Nucleus",
+          "B": "Ribosome",
+          "C": "Mitochondria",
+          "D": "Golgi Apparatus"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 10,
+        "question": "Which element has the atomic number 1?",
+        "options": {
+          "A": "Helium",
+          "B": "Hydrogen",
+          "C": "Lithium",
+          "D": "Oxygen"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      }
+    ],
+    "submitted_at": "2026-03-13T16:14:53.256934"
+  },
+  {
+    "result_id": "f18282e8",
+    "student_id": "1234",
+    "student_name": "kartik",
+    "exam_mode": "gesture",
+    "score": 0,
+    "total": 10,
+    "percentage": 0,
+    "badge": "Needs Improvement",
+    "time_taken": 6,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "What is the capital of France?",
+        "options": {
+          "A": "Berlin",
+          "B": "Madrid",
+          "C": "Paris",
+          "D": "Rome"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "question": "Which planet is known as the Red Planet?",
+        "options": {
+          "A": "Venus",
+          "B": "Mars",
+          "C": "Jupiter",
+          "D": "Saturn"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "question": "What is the chemical symbol for water?",
+        "options": {
+          "A": "CO2",
+          "B": "NaCl",
+          "C": "H2O",
+          "D": "O2"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "question": "Who painted the Mona Lisa?",
+        "options": {
+          "A": "Vincent van Gogh",
+          "B": "Pablo Picasso",
+          "C": "Michelangelo",
+          "D": "Leonardo da Vinci"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "question": "What is 15 multiplied by 8?",
+        "options": {
+          "A": "100",
+          "B": "115",
+          "C": "120",
+          "D": "125"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "question": "Which gas do plants absorb from the atmosphere?",
+        "options": {
+          "A": "Oxygen",
+          "B": "Nitrogen",
+          "C": "Carbon Dioxide",
+          "D": "Hydrogen"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "question": "What is the largest ocean on Earth?",
+        "options": {
+          "A": "Atlantic Ocean",
+          "B": "Indian Ocean",
+          "C": "Arctic Ocean",
+          "D": "Pacific Ocean"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "question": "In which year did World War II end?",
+        "options": {
+          "A": "1943",
+          "B": "1945",
+          "C": "1947",
+          "D": "1950"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "question": "What is the powerhouse of the cell?",
+        "options": {
+          "A": "Nucleus",
+          "B": "Ribosome",
+          "C": "Mitochondria",
+          "D": "Golgi Apparatus"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 10,
+        "question": "Which element has the atomic number 1?",
+        "options": {
+          "A": "Helium",
+          "B": "Hydrogen",
+          "C": "Lithium",
+          "D": "Oxygen"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      }
+    ],
+    "submitted_at": "2026-03-13T16:18:17.308489"
+  },
+  {
+    "result_id": "1c6eebd0",
+    "student_id": "1234",
+    "student_name": "kartik",
+    "exam_mode": "voice",
+    "score": 2,
+    "total": 10,
+    "percentage": 20,
+    "badge": "Needs Improvement",
+    "time_taken": 40,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "What is the capital of France?",
+        "options": {
+          "A": "Berlin",
+          "B": "Madrid",
+          "C": "Paris",
+          "D": "Rome"
+        },
+        "correct": "C",
+        "student_answer": "C",
+        "is_correct": true
+      },
+      {
+        "id": 2,
+        "question": "Which planet is known as the Red Planet?",
+        "options": {
+          "A": "Venus",
+          "B": "Mars",
+          "C": "Jupiter",
+          "D": "Saturn"
+        },
+        "correct": "B",
+        "student_answer": "B",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "question": "What is the chemical symbol for water?",
+        "options": {
+          "A": "CO2",
+          "B": "NaCl",
+          "C": "H2O",
+          "D": "O2"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "question": "Who painted the Mona Lisa?",
+        "options": {
+          "A": "Vincent van Gogh",
+          "B": "Pablo Picasso",
+          "C": "Michelangelo",
+          "D": "Leonardo da Vinci"
+        },
+        "correct": "D",
+        "student_answer": "A",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "question": "What is 15 multiplied by 8?",
+        "options": {
+          "A": "100",
+          "B": "115",
+          "C": "120",
+          "D": "125"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "question": "Which gas do plants absorb from the atmosphere?",
+        "options": {
+          "A": "Oxygen",
+          "B": "Nitrogen",
+          "C": "Carbon Dioxide",
+          "D": "Hydrogen"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "question": "What is the largest ocean on Earth?",
+        "options": {
+          "A": "Atlantic Ocean",
+          "B": "Indian Ocean",
+          "C": "Arctic Ocean",
+          "D": "Pacific Ocean"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "question": "In which year did World War II end?",
+        "options": {
+          "A": "1943",
+          "B": "1945",
+          "C": "1947",
+          "D": "1950"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "question": "What is the powerhouse of the cell?",
+        "options": {
+          "A": "Nucleus",
+          "B": "Ribosome",
+          "C": "Mitochondria",
+          "D": "Golgi Apparatus"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 10,
+        "question": "Which element has the atomic number 1?",
+        "options": {
+          "A": "Helium",
+          "B": "Hydrogen",
+          "C": "Lithium",
+          "D": "Oxygen"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      }
+    ],
+    "submitted_at": "2026-03-13T16:19:10.251958"
+  },
+  {
+    "result_id": "c03a7a7c",
+    "student_id": "STU001",
+    "student_name": "Test Student",
+    "exam_mode": "voice",
+    "score": 1,
+    "total": 10,
+    "percentage": 10,
+    "badge": "Needs Improvement",
+    "time_taken": 33,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "What is the capital of France?",
+        "options": {
+          "A": "Berlin",
+          "B": "Madrid",
+          "C": "Paris",
+          "D": "Rome"
+        },
+        "correct": "C",
+        "student_answer": "A",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "question": "Which planet is known as the Red Planet?",
+        "options": {
+          "A": "Venus",
+          "B": "Mars",
+          "C": "Jupiter",
+          "D": "Saturn"
+        },
+        "correct": "B",
+        "student_answer": "B",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "question": "What is the chemical symbol for water?",
+        "options": {
+          "A": "CO2",
+          "B": "NaCl",
+          "C": "H2O",
+          "D": "O2"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "question": "Who painted the Mona Lisa?",
+        "options": {
+          "A": "Vincent van Gogh",
+          "B": "Pablo Picasso",
+          "C": "Michelangelo",
+          "D": "Leonardo da Vinci"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "question": "What is 15 multiplied by 8?",
+        "options": {
+          "A": "100",
+          "B": "115",
+          "C": "120",
+          "D": "125"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "question": "Which gas do plants absorb from the atmosphere?",
+        "options": {
+          "A": "Oxygen",
+          "B": "Nitrogen",
+          "C": "Carbon Dioxide",
+          "D": "Hydrogen"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "question": "What is the largest ocean on Earth?",
+        "options": {
+          "A": "Atlantic Ocean",
+          "B": "Indian Ocean",
+          "C": "Arctic Ocean",
+          "D": "Pacific Ocean"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "question": "In which year did World War II end?",
+        "options": {
+          "A": "1943",
+          "B": "1945",
+          "C": "1947",
+          "D": "1950"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "question": "What is the powerhouse of the cell?",
+        "options": {
+          "A": "Nucleus",
+          "B": "Ribosome",
+          "C": "Mitochondria",
+          "D": "Golgi Apparatus"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 10,
+        "question": "Which element has the atomic number 1?",
+        "options": {
+          "A": "Helium",
+          "B": "Hydrogen",
+          "C": "Lithium",
+          "D": "Oxygen"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      }
+    ],
+    "submitted_at": "2026-04-01T21:48:51.339156"
+  },
+  {
+    "result_id": "4c6fb125",
+    "student_id": "STU001",
+    "student_name": "Test Student",
+    "exam_mode": "gesture",
+    "score": 0,
+    "total": 10,
+    "percentage": 0,
+    "badge": "Needs Improvement",
+    "time_taken": 71,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "What is the capital of France?",
+        "options": {
+          "A": "Berlin",
+          "B": "Madrid",
+          "C": "Paris",
+          "D": "Rome"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "question": "Which planet is known as the Red Planet?",
+        "options": {
+          "A": "Venus",
+          "B": "Mars",
+          "C": "Jupiter",
+          "D": "Saturn"
+        },
+        "correct": "B",
+        "student_answer": "D",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "question": "What is the chemical symbol for water?",
+        "options": {
+          "A": "CO2",
+          "B": "NaCl",
+          "C": "H2O",
+          "D": "O2"
+        },
+        "correct": "C",
+        "student_answer": "B",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "question": "Who painted the Mona Lisa?",
+        "options": {
+          "A": "Vincent van Gogh",
+          "B": "Pablo Picasso",
+          "C": "Michelangelo",
+          "D": "Leonardo da Vinci"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "question": "What is 15 multiplied by 8?",
+        "options": {
+          "A": "100",
+          "B": "115",
+          "C": "120",
+          "D": "125"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "question": "Which gas do plants absorb from the atmosphere?",
+        "options": {
+          "A": "Oxygen",
+          "B": "Nitrogen",
+          "C": "Carbon Dioxide",
+          "D": "Hydrogen"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "question": "What is the largest ocean on Earth?",
+        "options": {
+          "A": "Atlantic Ocean",
+          "B": "Indian Ocean",
+          "C": "Arctic Ocean",
+          "D": "Pacific Ocean"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "question": "In which year did World War II end?",
+        "options": {
+          "A": "1943",
+          "B": "1945",
+          "C": "1947",
+          "D": "1950"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "question": "What is the powerhouse of the cell?",
+        "options": {
+          "A": "Nucleus",
+          "B": "Ribosome",
+          "C": "Mitochondria",
+          "D": "Golgi Apparatus"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 10,
+        "question": "Which element has the atomic number 1?",
+        "options": {
+          "A": "Helium",
+          "B": "Hydrogen",
+          "C": "Lithium",
+          "D": "Oxygen"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      }
+    ],
+    "submitted_at": "2026-04-01T22:05:12.833666"
+  },
+  {
+    "result_id": "6fd73fde",
+    "student_id": "STU001",
+    "student_name": "Test Student",
+    "exam_mode": "gesture",
+    "score": 4,
+    "total": 10,
+    "percentage": 40,
+    "badge": "Needs Improvement",
+    "time_taken": 33,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "What is the capital of France?",
+        "options": {
+          "A": "Berlin",
+          "B": "Madrid",
+          "C": "Paris",
+          "D": "Rome"
+        },
+        "correct": "C",
+        "student_answer": "A",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "question": "Which planet is known as the Red Planet?",
+        "options": {
+          "A": "Venus",
+          "B": "Mars",
+          "C": "Jupiter",
+          "D": "Saturn"
+        },
+        "correct": "B",
+        "student_answer": "B",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "question": "What is the chemical symbol for water?",
+        "options": {
+          "A": "CO2",
+          "B": "NaCl",
+          "C": "H2O",
+          "D": "O2"
+        },
+        "correct": "C",
+        "student_answer": "C",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "question": "Who painted the Mona Lisa?",
+        "options": {
+          "A": "Vincent van Gogh",
+          "B": "Pablo Picasso",
+          "C": "Michelangelo",
+          "D": "Leonardo da Vinci"
+        },
+        "correct": "D",
+        "student_answer": "D",
+        "is_correct": true
+      },
+      {
+        "id": 5,
+        "question": "What is 15 multiplied by 8?",
+        "options": {
+          "A": "100",
+          "B": "115",
+          "C": "120",
+          "D": "125"
+        },
+        "correct": "C",
+        "student_answer": "A",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "question": "Which gas do plants absorb from the atmosphere?",
+        "options": {
+          "A": "Oxygen",
+          "B": "Nitrogen",
+          "C": "Carbon Dioxide",
+          "D": "Hydrogen"
+        },
+        "correct": "C",
+        "student_answer": "A",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "question": "What is the largest ocean on Earth?",
+        "options": {
+          "A": "Atlantic Ocean",
+          "B": "Indian Ocean",
+          "C": "Arctic Ocean",
+          "D": "Pacific Ocean"
+        },
+        "correct": "D",
+        "student_answer": "B",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "question": "In which year did World War II end?",
+        "options": {
+          "A": "1943",
+          "B": "1945",
+          "C": "1947",
+          "D": "1950"
+        },
+        "correct": "B",
+        "student_answer": "C",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "question": "What is the powerhouse of the cell?",
+        "options": {
+          "A": "Nucleus",
+          "B": "Ribosome",
+          "C": "Mitochondria",
+          "D": "Golgi Apparatus"
+        },
+        "correct": "C",
+        "student_answer": "A",
+        "is_correct": false
+      },
+      {
+        "id": 10,
+        "question": "Which element has the atomic number 1?",
+        "options": {
+          "A": "Helium",
+          "B": "Hydrogen",
+          "C": "Lithium",
+          "D": "Oxygen"
+        },
+        "correct": "B",
+        "student_answer": "B",
+        "is_correct": true
+      }
+    ],
+    "submitted_at": "2026-04-01T22:12:08.931570"
+  },
+  {
+    "result_id": "41629c9f",
+    "student_id": "TEST01",
+    "student_name": "Test User",
+    "exam_mode": "voice",
+    "score": 0,
+    "total": 10,
+    "percentage": 0,
+    "badge": "Needs Improvement",
+    "time_taken": 15,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "What is the capital of France?",
+        "options": {
+          "A": "Berlin",
+          "B": "Madrid",
+          "C": "Paris",
+          "D": "Rome"
+        },
+        "correct": "C",
+        "student_answer": "A",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "question": "Which planet is known as the Red Planet?",
+        "options": {
+          "A": "Venus",
+          "B": "Mars",
+          "C": "Jupiter",
+          "D": "Saturn"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "question": "What is the chemical symbol for water?",
+        "options": {
+          "A": "CO2",
+          "B": "NaCl",
+          "C": "H2O",
+          "D": "O2"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "question": "Who painted the Mona Lisa?",
+        "options": {
+          "A": "Vincent van Gogh",
+          "B": "Pablo Picasso",
+          "C": "Michelangelo",
+          "D": "Leonardo da Vinci"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "question": "What is 15 multiplied by 8?",
+        "options": {
+          "A": "100",
+          "B": "115",
+          "C": "120",
+          "D": "125"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "question": "Which gas do plants absorb from the atmosphere?",
+        "options": {
+          "A": "Oxygen",
+          "B": "Nitrogen",
+          "C": "Carbon Dioxide",
+          "D": "Hydrogen"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "question": "What is the largest ocean on Earth?",
+        "options": {
+          "A": "Atlantic Ocean",
+          "B": "Indian Ocean",
+          "C": "Arctic Ocean",
+          "D": "Pacific Ocean"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "question": "In which year did World War II end?",
+        "options": {
+          "A": "1943",
+          "B": "1945",
+          "C": "1947",
+          "D": "1950"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "question": "What is the powerhouse of the cell?",
+        "options": {
+          "A": "Nucleus",
+          "B": "Ribosome",
+          "C": "Mitochondria",
+          "D": "Golgi Apparatus"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 10,
+        "question": "Which element has the atomic number 1?",
+        "options": {
+          "A": "Helium",
+          "B": "Hydrogen",
+          "C": "Lithium",
+          "D": "Oxygen"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      }
+    ],
+    "submitted_at": "2026-04-03T00:08:31.315789"
+  },
+  {
+    "result_id": "c0f96819",
+    "student_id": "TEST01",
+    "student_name": "Test User",
+    "exam_mode": "voice",
+    "score": 1,
+    "total": 10,
+    "percentage": 10,
+    "badge": "Needs Improvement",
+    "time_taken": 30,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "What is the capital of France?",
+        "options": {
+          "A": "Berlin",
+          "B": "Madrid",
+          "C": "Paris",
+          "D": "Rome"
+        },
+        "correct": "C",
+        "student_answer": "B",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "question": "Which planet is known as the Red Planet?",
+        "options": {
+          "A": "Venus",
+          "B": "Mars",
+          "C": "Jupiter",
+          "D": "Saturn"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "question": "What is the chemical symbol for water?",
+        "options": {
+          "A": "CO2",
+          "B": "NaCl",
+          "C": "H2O",
+          "D": "O2"
+        },
+        "correct": "C",
+        "student_answer": "C",
+        "is_correct": true
+      },
+      {
+        "id": 4,
+        "question": "Who painted the Mona Lisa?",
+        "options": {
+          "A": "Vincent van Gogh",
+          "B": "Pablo Picasso",
+          "C": "Michelangelo",
+          "D": "Leonardo da Vinci"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "question": "What is 15 multiplied by 8?",
+        "options": {
+          "A": "100",
+          "B": "115",
+          "C": "120",
+          "D": "125"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "question": "Which gas do plants absorb from the atmosphere?",
+        "options": {
+          "A": "Oxygen",
+          "B": "Nitrogen",
+          "C": "Carbon Dioxide",
+          "D": "Hydrogen"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "question": "What is the largest ocean on Earth?",
+        "options": {
+          "A": "Atlantic Ocean",
+          "B": "Indian Ocean",
+          "C": "Arctic Ocean",
+          "D": "Pacific Ocean"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "question": "In which year did World War II end?",
+        "options": {
+          "A": "1943",
+          "B": "1945",
+          "C": "1947",
+          "D": "1950"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "question": "What is the powerhouse of the cell?",
+        "options": {
+          "A": "Nucleus",
+          "B": "Ribosome",
+          "C": "Mitochondria",
+          "D": "Golgi Apparatus"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 10,
+        "question": "Which element has the atomic number 1?",
+        "options": {
+          "A": "Helium",
+          "B": "Hydrogen",
+          "C": "Lithium",
+          "D": "Oxygen"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      }
+    ],
+    "submitted_at": "2026-04-03T00:09:55.065654"
+  },
+  {
+    "result_id": "b7dfdb9a",
+    "student_id": "1234",
+    "student_name": "kartik",
+    "exam_mode": "gesture",
+    "score": 3,
+    "total": 15,
+    "percentage": 20,
+    "badge": "Needs Improvement",
+    "time_taken": 90,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "Which layer in a CNN is primarily responsible for reducing the spatial dimensions (width and height) of the input data?",
+        "options": {
+          "A": "Convolutional Layer",
+          "B": "Activation Layer (ReLU)",
+          "C": "Pooling Layer (e.g., Max Pooling)",
+          "D": "Fully Connected Layer"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "question": "When classifying environmental sounds, why is audio often converted into a Mel Spectrogram?",
+        "options": {
+          "A": "To reduce the file size of the audio",
+          "B": "To transform the 1D audio signal into a 2D image-like representation for CNNs",
+          "C": "To remove background noise automatically",
+          "D": "To convert the audio into text"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "question": "In Transfer Learning, what does \"freezing\" the base model layers (like MobileNetV2) achieve?",
+        "options": {
+          "A": "It stops the model from making predictions",
+          "B": "It prevents the pre-trained weights from being updated during training",
+          "C": "It increases the learning rate automatically",
+          "D": "It deletes the weights to start from scratch"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "question": "Which activation function is most commonly used in the final layer of a multi-class classification model to output probabilities?",
+        "options": {
+          "A": "ReLU",
+          "B": "Sigmoid",
+          "C": "Tanh",
+          "D": "Softmax"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "question": "What is the main advantage of MobileNetV2 over larger models like ResNet50 for a Smart Home Assistant?",
+        "options": {
+          "A": "It has higher accuracy on all datasets",
+          "B": "It is lightweight and optimized for real-time performance on mobile/embedded devices",
+          "C": "It does not require any training data",
+          "D": "It only works with audio data"
+        },
+        "correct": "B",
+        "student_answer": "C",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "question": "Which pagination type allows you to \"jump\" directly to Page 10 by simply changing a number in the web address?",
+        "options": {
+          "A": "Infinite Scroll",
+          "B": "Cursor-Based Pagination",
+          "C": "URL-Based Pagination",
+          "D": "\"Load More\" Buttons"
+        },
+        "correct": "C",
+        "student_answer": "B",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "question": "Why is \"Infinite Scroll\" more difficult to scrape than standard numbered pagination?",
+        "options": {
+          "A": "It uses higher encryption",
+          "B": "The URL stays the same, and content only loads when a scroll event is triggered",
+          "C": "It doesn't contain any HTML",
+          "D": "It requires a paid API key"
+        },
+        "correct": "B",
+        "student_answer": "A",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "question": "In \"Cursor-Based Pagination,\" what is a \"cursor\"?",
+        "options": {
+          "A": "The mouse pointer on the screen",
+          "B": "A mathematical offset (e.g., $+10$)",
+          "C": "A unique ID or token that acts as a \"bookmark\" for the next set of data",
+          "D": "A JavaScript function that clicks buttons"
+        },
+        "correct": "C",
+        "student_answer": "C",
+        "is_correct": true
+      },
+      {
+        "id": 9,
+        "question": "Which tool is best suited for scraping a website that uses \"Load More\" buttons?",
+        "options": {
+          "A": "BeautifulSoup (only)",
+          "B": "Requests (only)",
+          "C": "Selenium or Playwright",
+          "D": "Pandas"
+        },
+        "correct": "C",
+        "student_answer": "C",
+        "is_correct": true
+      },
+      {
+        "id": 10,
+        "question": "What is the main benefit of Client-Side Pagination for a user?",
+        "options": {
+          "A": "It keeps the server from crashing",
+          "B": "It allows for instant page switching because all data is pre-loaded in the browser",
+          "C": "It hides the data from web scrapers",
+          "D": "It makes the initial page load much faster"
+        },
+        "correct": "B",
+        "student_answer": "B",
+        "is_correct": true
+      },
+      {
+        "id": 11,
+        "question": "In your Flask code, what does jsonify(rates) do?",
+        "options": {
+          "A": "It prints the rates to the console",
+          "B": "It converts a Python dictionary into a JSON-formatted response",
+          "C": "It saves the rates to a database",
+          "D": "It checks if the rates are valid numbers"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 12,
+        "question": "Which HTTP method is typically used to \"retrieve\" data from a REST API endpoint like /rates?",
+        "options": {
+          "A": "POST",
+          "B": "DELETE",
+          "C": "GET",
+          "D": "PUT"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 13,
+        "question": "What happens if you run a Flask script and see ModuleNotFoundError: No module named 'flask'?",
+        "options": {
+          "A": "Your code has a syntax error",
+          "B": "Flask is not installed in your current Python environment",
+          "C": "The server is already running on that port",
+          "D": "Your Python version is too old"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 14,
+        "question": "In a REST API, what does the status code 404 represent?",
+        "options": {
+          "A": "Unauthorized access",
+          "B": "Success",
+          "C": "Internal Server Error",
+          "D": "Resource Not Found"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 15,
+        "question": "What is the purpose of the @app.route(\"/convert/<from_currency>/...\") decorator?",
+        "options": {
+          "A": "To encrypt the currency data",
+          "B": "To map a specific URL pattern to a Python function",
+          "C": "To create a new database table",
+          "D": "To install the Flask library"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      }
+    ],
+    "submitted_at": "2026-04-03T16:53:24.052422"
+  },
+  {
+    "result_id": "c8e40b15",
+    "student_id": "STU001",
+    "student_name": "Raghava Srivastava",
+    "exam_mode": "gesture",
+    "score": 1,
+    "total": 15,
+    "percentage": 7,
+    "badge": "Needs Improvement",
+    "time_taken": 12,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "Which layer in a CNN is primarily responsible for reducing the spatial dimensions (width and height) of the input data?",
+        "options": {
+          "A": "Convolutional Layer",
+          "B": "Activation Layer (ReLU)",
+          "C": "Pooling Layer (e.g., Max Pooling)",
+          "D": "Fully Connected Layer"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "question": "When classifying environmental sounds, why is audio often converted into a Mel Spectrogram?",
+        "options": {
+          "A": "To reduce the file size of the audio",
+          "B": "To transform the 1D audio signal into a 2D image-like representation for CNNs",
+          "C": "To remove background noise automatically",
+          "D": "To convert the audio into text"
+        },
+        "correct": "B",
+        "student_answer": "B",
+        "is_correct": true
+      },
+      {
+        "id": 3,
+        "question": "In Transfer Learning, what does \"freezing\" the base model layers (like MobileNetV2) achieve?",
+        "options": {
+          "A": "It stops the model from making predictions",
+          "B": "It prevents the pre-trained weights from being updated during training",
+          "C": "It increases the learning rate automatically",
+          "D": "It deletes the weights to start from scratch"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "question": "Which activation function is most commonly used in the final layer of a multi-class classification model to output probabilities?",
+        "options": {
+          "A": "ReLU",
+          "B": "Sigmoid",
+          "C": "Tanh",
+          "D": "Softmax"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "question": "What is the main advantage of MobileNetV2 over larger models like ResNet50 for a Smart Home Assistant?",
+        "options": {
+          "A": "It has higher accuracy on all datasets",
+          "B": "It is lightweight and optimized for real-time performance on mobile/embedded devices",
+          "C": "It does not require any training data",
+          "D": "It only works with audio data"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "question": "Which pagination type allows you to \"jump\" directly to Page 10 by simply changing a number in the web address?",
+        "options": {
+          "A": "Infinite Scroll",
+          "B": "Cursor-Based Pagination",
+          "C": "URL-Based Pagination",
+          "D": "\"Load More\" Buttons"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "question": "Why is \"Infinite Scroll\" more difficult to scrape than standard numbered pagination?",
+        "options": {
+          "A": "It uses higher encryption",
+          "B": "The URL stays the same, and content only loads when a scroll event is triggered",
+          "C": "It doesn't contain any HTML",
+          "D": "It requires a paid API key"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "question": "In \"Cursor-Based Pagination,\" what is a \"cursor\"?",
+        "options": {
+          "A": "The mouse pointer on the screen",
+          "B": "A mathematical offset (e.g., $+10$)",
+          "C": "A unique ID or token that acts as a \"bookmark\" for the next set of data",
+          "D": "A JavaScript function that clicks buttons"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "question": "Which tool is best suited for scraping a website that uses \"Load More\" buttons?",
+        "options": {
+          "A": "BeautifulSoup (only)",
+          "B": "Requests (only)",
+          "C": "Selenium or Playwright",
+          "D": "Pandas"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 10,
+        "question": "What is the main benefit of Client-Side Pagination for a user?",
+        "options": {
+          "A": "It keeps the server from crashing",
+          "B": "It allows for instant page switching because all data is pre-loaded in the browser",
+          "C": "It hides the data from web scrapers",
+          "D": "It makes the initial page load much faster"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 11,
+        "question": "In your Flask code, what does jsonify(rates) do?",
+        "options": {
+          "A": "It prints the rates to the console",
+          "B": "It converts a Python dictionary into a JSON-formatted response",
+          "C": "It saves the rates to a database",
+          "D": "It checks if the rates are valid numbers"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 12,
+        "question": "Which HTTP method is typically used to \"retrieve\" data from a REST API endpoint like /rates?",
+        "options": {
+          "A": "POST",
+          "B": "DELETE",
+          "C": "GET",
+          "D": "PUT"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 13,
+        "question": "What happens if you run a Flask script and see ModuleNotFoundError: No module named 'flask'?",
+        "options": {
+          "A": "Your code has a syntax error",
+          "B": "Flask is not installed in your current Python environment",
+          "C": "The server is already running on that port",
+          "D": "Your Python version is too old"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 14,
+        "question": "In a REST API, what does the status code 404 represent?",
+        "options": {
+          "A": "Unauthorized access",
+          "B": "Success",
+          "C": "Internal Server Error",
+          "D": "Resource Not Found"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 15,
+        "question": "What is the purpose of the @app.route(\"/convert/<from_currency>/...\") decorator?",
+        "options": {
+          "A": "To encrypt the currency data",
+          "B": "To map a specific URL pattern to a Python function",
+          "C": "To create a new database table",
+          "D": "To install the Flask library"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      }
+    ],
+    "submitted_at": "2026-04-08T10:35:12.359473"
+  },
+  {
+    "result_id": "2579f751",
+    "student_id": "STU001",
+    "student_name": "Raghava Srivastava",
+    "exam_mode": "gesture",
+    "score": 0,
+    "total": 15,
+    "percentage": 0,
+    "badge": "Needs Improvement",
+    "time_taken": 18,
+    "breakdown": [
+      {
+        "id": 1,
+        "question": "Which layer in a CNN is primarily responsible for reducing the spatial dimensions (width and height) of the input data?",
+        "options": {
+          "A": "Convolutional Layer",
+          "B": "Activation Layer (ReLU)",
+          "C": "Pooling Layer (e.g., Max Pooling)",
+          "D": "Fully Connected Layer"
+        },
+        "correct": "C",
+        "student_answer": "A",
+        "is_correct": false
+      },
+      {
+        "id": 2,
+        "question": "When classifying environmental sounds, why is audio often converted into a Mel Spectrogram?",
+        "options": {
+          "A": "To reduce the file size of the audio",
+          "B": "To transform the 1D audio signal into a 2D image-like representation for CNNs",
+          "C": "To remove background noise automatically",
+          "D": "To convert the audio into text"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 3,
+        "question": "In Transfer Learning, what does \"freezing\" the base model layers (like MobileNetV2) achieve?",
+        "options": {
+          "A": "It stops the model from making predictions",
+          "B": "It prevents the pre-trained weights from being updated during training",
+          "C": "It increases the learning rate automatically",
+          "D": "It deletes the weights to start from scratch"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 4,
+        "question": "Which activation function is most commonly used in the final layer of a multi-class classification model to output probabilities?",
+        "options": {
+          "A": "ReLU",
+          "B": "Sigmoid",
+          "C": "Tanh",
+          "D": "Softmax"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 5,
+        "question": "What is the main advantage of MobileNetV2 over larger models like ResNet50 for a Smart Home Assistant?",
+        "options": {
+          "A": "It has higher accuracy on all datasets",
+          "B": "It is lightweight and optimized for real-time performance on mobile/embedded devices",
+          "C": "It does not require any training data",
+          "D": "It only works with audio data"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 6,
+        "question": "Which pagination type allows you to \"jump\" directly to Page 10 by simply changing a number in the web address?",
+        "options": {
+          "A": "Infinite Scroll",
+          "B": "Cursor-Based Pagination",
+          "C": "URL-Based Pagination",
+          "D": "\"Load More\" Buttons"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 7,
+        "question": "Why is \"Infinite Scroll\" more difficult to scrape than standard numbered pagination?",
+        "options": {
+          "A": "It uses higher encryption",
+          "B": "The URL stays the same, and content only loads when a scroll event is triggered",
+          "C": "It doesn't contain any HTML",
+          "D": "It requires a paid API key"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 8,
+        "question": "In \"Cursor-Based Pagination,\" what is a \"cursor\"?",
+        "options": {
+          "A": "The mouse pointer on the screen",
+          "B": "A mathematical offset (e.g., $+10$)",
+          "C": "A unique ID or token that acts as a \"bookmark\" for the next set of data",
+          "D": "A JavaScript function that clicks buttons"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 9,
+        "question": "Which tool is best suited for scraping a website that uses \"Load More\" buttons?",
+        "options": {
+          "A": "BeautifulSoup (only)",
+          "B": "Requests (only)",
+          "C": "Selenium or Playwright",
+          "D": "Pandas"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 10,
+        "question": "What is the main benefit of Client-Side Pagination for a user?",
+        "options": {
+          "A": "It keeps the server from crashing",
+          "B": "It allows for instant page switching because all data is pre-loaded in the browser",
+          "C": "It hides the data from web scrapers",
+          "D": "It makes the initial page load much faster"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 11,
+        "question": "In your Flask code, what does jsonify(rates) do?",
+        "options": {
+          "A": "It prints the rates to the console",
+          "B": "It converts a Python dictionary into a JSON-formatted response",
+          "C": "It saves the rates to a database",
+          "D": "It checks if the rates are valid numbers"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 12,
+        "question": "Which HTTP method is typically used to \"retrieve\" data from a REST API endpoint like /rates?",
+        "options": {
+          "A": "POST",
+          "B": "DELETE",
+          "C": "GET",
+          "D": "PUT"
+        },
+        "correct": "C",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 13,
+        "question": "What happens if you run a Flask script and see ModuleNotFoundError: No module named 'flask'?",
+        "options": {
+          "A": "Your code has a syntax error",
+          "B": "Flask is not installed in your current Python environment",
+          "C": "The server is already running on that port",
+          "D": "Your Python version is too old"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 14,
+        "question": "In a REST API, what does the status code 404 represent?",
+        "options": {
+          "A": "Unauthorized access",
+          "B": "Success",
+          "C": "Internal Server Error",
+          "D": "Resource Not Found"
+        },
+        "correct": "D",
+        "student_answer": "",
+        "is_correct": false
+      },
+      {
+        "id": 15,
+        "question": "What is the purpose of the @app.route(\"/convert/<from_currency>/...\") decorator?",
+        "options": {
+          "A": "To encrypt the currency data",
+          "B": "To map a specific URL pattern to a Python function",
+          "C": "To create a new database table",
+          "D": "To install the Flask library"
+        },
+        "correct": "B",
+        "student_answer": "",
+        "is_correct": false
+      }
+    ],
+    "submitted_at": "2026-04-08T10:36:19.425946"
+  }
+]

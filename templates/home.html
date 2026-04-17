@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Home — VisionVerse{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <span class="section-icon">👋</span>
+    <h1 class="heading-xl">Welcome, {{ session.get('student_name', 'Student') }}</h1>
+    <p class="subtitle">Choose the examination mode that works best for you.</p>
+</div>
+
+<div class="mode-cards">
+    <div class="mode-card" onclick="selectMode('gesture')" id="card-gesture">
+        <div class="mode-icon-lg gesture">📷</div>
+        <h3>Gesture Mode</h3>
+        <p>Use hand gestures in front of the camera. Show 1–4 fingers to select your answer. Ideal for motor or visual
+            impairments.</p>
+        <button class="btn btn-primary btn-sm" style="width:100%">Start with Gesture</button>
+    </div>
+
+    <div class="mode-card" onclick="selectMode('voice')" id="card-voice">
+        <div class="mode-icon-lg voice">🎙️</div>
+        <h3>Voice Mode</h3>
+        <p>Use voice commands to navigate and answer questions. Say "Option A" or "Next" to control the exam. Ideal for
+            hand impairments.</p>
+        <button class="btn btn-primary btn-sm" style="width:100%">Start with Voice</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    async function selectMode(mode) {
+        await fetch('/api/set_mode', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mode: mode })
+        });
+        window.location.href = '/permissions';
+    }
+</script>
+{% endblock %}

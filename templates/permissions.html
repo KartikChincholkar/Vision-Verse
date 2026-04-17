@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block title %}Permissions — VisionVerse{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <span class="section-icon">🔑</span>
+    <h1 class="heading-xl">Grant Permissions</h1>
+    <p class="subtitle">We need access to your devices before starting the exam.</p>
+</div>
+
+<div class="perm-list">
+    <div class="perm-item" id="perm-camera">
+        <div class="perm-icon">📷</div>
+        <div class="perm-info">
+            <h4>Camera Access</h4>
+            <p>Required for gesture-based answer detection.</p>
+        </div>
+        <span class="perm-status pending" id="perm-camera-status">⏳ Pending</span>
+    </div>
+
+    <div class="perm-item" id="perm-mic">
+        <div class="perm-icon">🎙️</div>
+        <div class="perm-info">
+            <h4>Microphone Access</h4>
+            <p>Required for voice command recognition.</p>
+        </div>
+        <span class="perm-status pending" id="perm-mic-status">⏳ Pending</span>
+    </div>
+</div>
+
+<div class="camera-preview hidden" id="camera-preview-wrap">
+    <video id="camera-preview" autoplay playsinline muted></video>
+</div>
+
+<p class="hidden" id="perm-help" style="color:var(--red);font-size:0.85rem;text-align:center;margin-top:12px;">
+    Permission denied. Please enable it in your browser settings and reload.
+</p>
+
+<button class="btn btn-primary mt-3" id="continue-btn" disabled onclick="window.location.href='/exam'">
+    Continue to Exam
+</button>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var examMode = '{{ session.get("exam_mode", "gesture") }}';
+    var cameraOk = false, micOk = false;
+
+    function updateContinue() {
+        var btn = document.getElementById('continue-btn');
+        if (examMode === 'gesture') btn.disabled = !cameraOk;
+        else if (examMode === 'voice') btn.disabled = !micOk;
+        else btn.disabled = !(cameraOk || micOk);
+    }
+
+    function setStatus(id, state) {
+        var el = document.getElementById(id);
+        if (state === 'granted') { el.className = 'perm-status granted'; el.textContent = '✅ Granted'; }
+        else if (state === 'denied') { el.className = 'perm-status denied'; el.textContent = '❌ Denied'; }
+        else { el.className = 'perm-status pending'; el.textContent = '⏳ Pending'; }
+    }
+
+    async function requestCamera() {
+        try {
+            var stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            cameraOk = true;
+            setStatus('perm-camera-status', 'granted');
+            document.getElementById('perm-camera').classList.add('granted');
+            var preview = document.getElementById('camera-preview');
+            preview.srcObject = stream;
+            document.getElementById('camera-preview-wrap').classList.remove('hidden');
+        } catch (e) {
+            setStatus('perm-camera-status', 'denied');
+            document.getElementById('perm-camera').classList.add('denied');
+            document.getElementById('perm-help').classList.remove('hidden');
+        }
+        updateContinue();
+    }
+
+    async function requestMic() {
+        try {
+            var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            micOk = true;
+            setStatus('perm-mic-status', 'granted');
+            document.getElementById('perm-mic').classList.add('granted');
+            stream.getTracks().forEach(function (t) { t.stop(); });
+        } catch (e) {
+            setStatus('perm-mic-status', 'denied');
+            document.getElementById('perm-mic').classList.add('denied');
+            document.getElementById('perm-help').classList.remove('hidden');
+        }
+        updateContinue();
+    }
+
+    if (examMode === 'gesture') {
+        requestCamera();
+        requestMic();
+    } else if (examMode === 'voice') {
+        requestMic();
+        setStatus('perm-camera-status', 'granted');
+        document.getElementById('perm-camera-status').textContent = '— Not needed';
+        document.getElementById('perm-camera-status').className = 'perm-status';
+    } else {
+        requestCamera();
+        requestMic();
+    }
+</script>
+{% endblock %}

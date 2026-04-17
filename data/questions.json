@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "question": "Which layer in a CNN is primarily responsible for reducing the spatial dimensions (width and height) of the input data?",
+    "options": {
+      "A": "Convolutional Layer",
+      "B": "Activation Layer (ReLU)",
+      "C": "Pooling Layer (e.g., Max Pooling)",
+      "D": "Fully Connected Layer"
+    },
+    "correct": "C"
+  },
+  {
+    "id": 2,
+    "question": "When classifying environmental sounds, why is audio often converted into a Mel Spectrogram?",
+    "options": {
+      "A": "To reduce the file size of the audio",
+      "B": "To transform the 1D audio signal into a 2D image-like representation for CNNs",
+      "C": "To remove background noise automatically",
+      "D": "To convert the audio into text"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 3,
+    "question": "In Transfer Learning, what does \"freezing\" the base model layers (like MobileNetV2) achieve?",
+    "options": {
+      "A": "It stops the model from making predictions",
+      "B": "It prevents the pre-trained weights from being updated during training",
+      "C": "It increases the learning rate automatically",
+      "D": "It deletes the weights to start from scratch"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 4,
+    "question": "Which activation function is most commonly used in the final layer of a multi-class classification model to output probabilities?",
+    "options": {
+      "A": "ReLU",
+      "B": "Sigmoid",
+      "C": "Tanh",
+      "D": "Softmax"
+    },
+    "correct": "D"
+  },
+  {
+    "id": 5,
+    "question": "What is the main advantage of MobileNetV2 over larger models like ResNet50 for a Smart Home Assistant?",
+    "options": {
+      "A": "It has higher accuracy on all datasets",
+      "B": "It is lightweight and optimized for real-time performance on mobile/embedded devices",
+      "C": "It does not require any training data",
+      "D": "It only works with audio data"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 6,
+    "question": "Which pagination type allows you to \"jump\" directly to Page 10 by simply changing a number in the web address?",
+    "options": {
+      "A": "Infinite Scroll",
+      "B": "Cursor-Based Pagination",
+      "C": "URL-Based Pagination",
+      "D": "\"Load More\" Buttons"
+    },
+    "correct": "C"
+  },
+  {
+    "id": 7,
+    "question": "Why is \"Infinite Scroll\" more difficult to scrape than standard numbered pagination?",
+    "options": {
+      "A": "It uses higher encryption",
+      "B": "The URL stays the same, and content only loads when a scroll event is triggered",
+      "C": "It doesn't contain any HTML",
+      "D": "It requires a paid API key"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 8,
+    "question": "In \"Cursor-Based Pagination,\" what is a \"cursor\"?",
+    "options": {
+      "A": "The mouse pointer on the screen",
+      "B": "A mathematical offset (e.g., $+10$)",
+      "C": "A unique ID or token that acts as a \"bookmark\" for the next set of data",
+      "D": "A JavaScript function that clicks buttons"
+    },
+    "correct": "C"
+  },
+  {
+    "id": 9,
+    "question": "Which tool is best suited for scraping a website that uses \"Load More\" buttons?",
+    "options": {
+      "A": "BeautifulSoup (only)",
+      "B": "Requests (only)",
+      "C": "Selenium or Playwright",
+      "D": "Pandas"
+    },
+    "correct": "C"
+  },
+  {
+    "id": 10,
+    "question": "What is the main benefit of Client-Side Pagination for a user?",
+    "options": {
+      "A": "It keeps the server from crashing",
+      "B": "It allows for instant page switching because all data is pre-loaded in the browser",
+      "C": "It hides the data from web scrapers",
+      "D": "It makes the initial page load much faster"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 11,
+    "question": "In your Flask code, what does jsonify(rates) do?",
+    "options": {
+      "A": "It prints the rates to the console",
+      "B": "It converts a Python dictionary into a JSON-formatted response",
+      "C": "It saves the rates to a database",
+      "D": "It checks if the rates are valid numbers"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 12,
+    "question": "Which HTTP method is typically used to \"retrieve\" data from a REST API endpoint like /rates?",
+    "options": {
+      "A": "POST",
+      "B": "DELETE",
+      "C": "GET",
+      "D": "PUT"
+    },
+    "correct": "C"
+  },
+  {
+    "id": 13,
+    "question": "What happens if you run a Flask script and see ModuleNotFoundError: No module named 'flask'?",
+    "options": {
+      "A": "Your code has a syntax error",
+      "B": "Flask is not installed in your current Python environment",
+      "C": "The server is already running on that port",
+      "D": "Your Python version is too old"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 14,
+    "question": "In a REST API, what does the status code 404 represent?",
+    "options": {
+      "A": "Unauthorized access",
+      "B": "Success",
+      "C": "Internal Server Error",
+      "D": "Resource Not Found"
+    },
+    "correct": "D"
+  },
+  {
+    "id": 15,
+    "question": "What is the purpose of the @app.route(\"/convert/<from_currency>/...\") decorator?",
+    "options": {
+      "A": "To encrypt the currency data",
+      "B": "To map a specific URL pattern to a Python function",
+      "C": "To create a new database table",
+      "D": "To install the Flask library"
+    },
+    "correct": "B"
+  }
+]
