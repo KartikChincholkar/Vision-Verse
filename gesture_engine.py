@@ -137,15 +137,13 @@ class GestureEngine:
 
     def _is_fist(self, landmarks):
         """
-        Fist: thumb tip (4) is NOT clearly above thumb MCP (2),
-        and all 4 fingers are folded (tips below their PIP joints).
+        Fist: all 4 fingers are folded (tips below their PIP joints).
         """
-        thumb_raised   = landmarks[4].y < landmarks[2].y - 0.04
         fingers_folded = all(
             landmarks[tip].y >= landmarks[pip].y
             for tip, pip in zip(self.FINGER_TIPS, self.FINGER_PIPS)
         )
-        return (not thumb_raised) and fingers_folded
+        return fingers_folded
 
     def _smooth_gesture(self, count):
         """Return count if same value held for SMOOTHING_FRAMES, else None."""

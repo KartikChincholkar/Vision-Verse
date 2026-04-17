@@ -146,7 +146,7 @@
     };
 
     ClientGestureEngine.prototype._isFist = function (landmarks) {
-        var thumbRaised = landmarks[4].y < landmarks[2].y - 0.04;
+        // A fist is defined as all 4 main fingers being folded.
         var fingersFolded = true;
         for (var i = 0; i < FINGER_TIPS.length; i++) {
             if (landmarks[FINGER_TIPS[i]].y < landmarks[FINGER_PIPS[i]].y) {
@@ -154,7 +154,7 @@
                 break;
             }
         }
-        return !thumbRaised && fingersFolded;
+        return fingersFolded;
     };
 
     ClientGestureEngine.prototype._smoothGesture = function (count) {
