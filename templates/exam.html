@@ -48,7 +48,7 @@
                 🤟 3 fingers &rarr; Option C<br>
                 🖖 4 fingers &rarr; Option D<br>
                 🖐️ 5 fingers &rarr; Previous Question<br>
-                👍 Thumb up &rarr; Next / Submit
+                ✊ Fist &rarr; Next / Submit
             </div>
         </div>
 
@@ -103,14 +103,14 @@
                         document.getElementById('finger-display').textContent = option;
                         selectOption(key);
                         document.getElementById('status-bar').textContent =
-                            '✅ Option ' + key + ' selected — show 👍 to confirm & move on';
+                            '✅ Option ' + key + ' selected — show ✊ to confirm & move on';
                         if (isNewSelection) {
-                            speak('Option ' + key + ' selected. Show thumbs up to confirm and move on.');
+                            speak('Option ' + key + ' selected. Show a fist to confirm and move on.');
                         }
                     }
                 },
                 onGestureNext: function () {
-                    document.getElementById('finger-display').textContent = '👍';
+                    document.getElementById('finger-display').textContent = '✊';
                     if (currentIdx < questions.length - 1) {
                         document.getElementById('status-bar').textContent = '➡️ Moving to next question…';
                         nextQuestion();
