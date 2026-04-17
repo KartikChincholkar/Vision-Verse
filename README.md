@@ -59,7 +59,7 @@ python app.py
   - ✌️ **2 Fingers** → Option B
   - 🤟 **3 Fingers** → Option C
   - 💐 **4 Fingers** → Option D
-  - ✊ **Fist** → Confirm & Next Question / Submit
+  - 👍 **Thumb Up** → Confirm & Next Question / Submit
 - **Voice-Driven Commands (Voice Mode)**: Integrates the Web Speech API so students with motor impairments can navigate and answer purely using voice commands.
 - **Text-to-Speech (TTS)**: Automatically reads questions and options aloud to ensure a hands-free and eyes-free experience.
 - **Dynamic Content**: Questions list (`questions.json`) and student accounts (`students.json`) are fetched from flexible local JSON databases.

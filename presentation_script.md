@@ -29,7 +29,7 @@
 
 **Speaker:** 
 "To achieve this, Vision-Verse operates on a system of dual-mode accessibility, ensuring we hit the specific needs of different users:
-- First, we have **Gesture Mode** for students with visual impairments. Using cutting-edge AI hand-tracking, a student simply raises their fingers to the webcam to select an answer. One finger for Option A, two for Option B, and so on. A 'Fist' confirms and submits their answer.
+- First, we have **Gesture Mode** for students with visual impairments. Using cutting-edge AI hand-tracking, a student simply raises their fingers to the webcam to select an answer. One finger for Option A, two for Option B, and so on. A 'Thumbs Up' confirms and submits their answer.
 - Second, we have **Voice Mode** for students with motor impairments. This allows students to navigate and answer questions completely hands-free using natural voice commands.
 - Tying it together is our dynamic **Text-to-Speech** functionality. The system automatically reads out questions and options so the experience is entirely eyes-free."
 

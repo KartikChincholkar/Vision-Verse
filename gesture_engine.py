@@ -1,14 +1,14 @@
 """
 VisionVerse — Gesture Recognition Engine
 Uses MediaPipe HandLandmarker (Tasks API, mediapipe >= 0.10) to detect
-finger counts and fist gestures from the webcam via MJPEG stream.
+finger counts and thumb-up gestures from the webcam via MJPEG stream.
 
 Gesture → SocketIO mapping
   1 finger  → gesture_input  {option: 1}  → Option A
   2 fingers → gesture_input  {option: 2}  → Option B
   3 fingers → gesture_input  {option: 3}  → Option C
-  5 fingers → gesture_prev                 → Previous question
-  Fist      → gesture_next   {}           → Next question / Submit
+  4 fingers → gesture_input  {option: 4}  → Option D
+  Thumb up  → gesture_next   {}           → Next question / Submit
 """
 
 import os
@@ -43,12 +43,12 @@ class GestureEngine:
     FINGER_PIPS = [6, 10, 14, 18]   # Corresponding PIP joints
 
     # Smoothing
-    SMOOTHING_FRAMES    = 15         # Consecutive frames for finger-count lock
-    FIST_SMOOTH_FRAMES  = 12         # Consecutive frames for fist lock
+    SMOOTHING_FRAMES   = 15          # Consecutive frames for finger-count lock
+    THUMB_SMOOTH_FRAMES = 12         # Consecutive frames for thumb-up lock
 
     # Cooldowns (seconds)
     ANSWER_COOLDOWN = 1.5            # Between finger-count emissions
-    NEXT_COOLDOWN   = 2.0            # Between fist emissions
+    NEXT_COOLDOWN   = 2.0            # Between thumb-up emissions
 
     # Model path (same directory as this file)
     MODEL_PATH = os.path.join(os.path.dirname(__file__), "hand_landmarker.task")
@@ -62,7 +62,7 @@ class GestureEngine:
         self.active          = False
 
         self._gesture_buffer = []   # finger-count smoothing
-        self._fist_buffer    = []   # fist smoothing
+        self._thumb_buffer   = []   # thumb-up smoothing
         self._latest_landmarks = None
 
         self._last_answer_time = 0.0
@@ -109,13 +109,13 @@ class GestureEngine:
         with self._lock:
             self.active = True
             self._gesture_buffer = []
-            self._fist_buffer    = []
+            self._thumb_buffer   = []
 
     def stop(self):
         with self._lock:
             self.active = False
             self._gesture_buffer = []
-            self._fist_buffer    = []
+            self._thumb_buffer   = []
 
     # ── Helpers ───────────────────────────────────────────────────────────────
 
@@ -135,15 +135,17 @@ class GestureEngine:
                 
         return count
 
-    def _is_fist(self, landmarks):
+    def _is_thumb_up(self, landmarks):
         """
-        Fist: all 4 fingers are folded (tips below their PIP joints).
+        Thumb-up: thumb tip (4) is clearly above thumb MCP (2)
+        AND all four fingers are folded (tips below their PIP joints).
         """
+        thumb_raised   = landmarks[4].y < landmarks[2].y - 0.04
         fingers_folded = all(
             landmarks[tip].y >= landmarks[pip].y
             for tip, pip in zip(self.FINGER_TIPS, self.FINGER_PIPS)
         )
-        return fingers_folded
+        return thumb_raised and fingers_folded
 
     def _smooth_gesture(self, count):
         """Return count if same value held for SMOOTHING_FRAMES, else None."""
@@ -155,13 +157,13 @@ class GestureEngine:
             return count
         return None
 
-    def _smooth_fist(self, is_fist):
-        """Return True if fist held for FIST_SMOOTH_FRAMES, else False."""
-        self._fist_buffer.append(is_fist)
-        if len(self._fist_buffer) > self.FIST_SMOOTH_FRAMES:
-            self._fist_buffer.pop(0)
-        return (len(self._fist_buffer) == self.FIST_SMOOTH_FRAMES
-                and all(self._fist_buffer))
+    def _smooth_thumb(self, is_up):
+        """Return True if thumb-up held for THUMB_SMOOTH_FRAMES, else False."""
+        self._thumb_buffer.append(is_up)
+        if len(self._thumb_buffer) > self.THUMB_SMOOTH_FRAMES:
+            self._thumb_buffer.pop(0)
+        return (len(self._thumb_buffer) == self.THUMB_SMOOTH_FRAMES
+                and all(self._thumb_buffer))
 
     @staticmethod
     def _open_camera():
@@ -239,31 +241,29 @@ class GestureEngine:
 
                 if landmarks:
                     finger_count = self._count_fingers(landmarks)
-                    is_fist      = self._is_fist(landmarks)
+                    thumb_up     = self._is_thumb_up(landmarks)
 
                     # Draw landmark dots
                     for lm in landmarks:
                         cx, cy = int(lm.x * w_px), int(lm.y * h_px)
                         cv2.circle(frame, (cx, cy), 5, (0, 230, 138), -1)
 
-                    # ── Fist → next / submit ──────────────────────────
-                    if is_fist:
+                    # ── Thumb-up → next / submit ──────────────────────────
+                    if thumb_up:
                         self._gesture_buffer = []
-                        fist_confirmed = self._smooth_fist(True)
-                        self.socketio.emit('finger_display', {'fingers': '✊'})
-                        cv2.putText(frame, "✊ NEXT", (10, 40),
+                        thumb_confirmed = self._smooth_thumb(True)
+                        cv2.putText(frame, "👍 NEXT", (10, 40),
                                     cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255, 200, 0), 3)
-                        if fist_confirmed:
+                        if thumb_confirmed:
                             if current_time - self._last_next_time > self.NEXT_COOLDOWN:
                                 self._last_next_time = current_time
-                                logger.info("Gesture: fist → next/submit")
+                                logger.info("Gesture: thumb up → next/submit")
                                 self.socketio.emit("gesture_next", {}, namespace="/")
-                                self._fist_buffer = []
+                                self._thumb_buffer = []
 
                     # ── Finger count → select answer or previous ───────────
                     else:
-                        self._fist_buffer = []
-                        self.socketio.emit('finger_display', {'fingers': str(finger_count)})
+                        self._thumb_buffer = []
                         opt_map = {1: "A", 2: "B", 3: "C", 4: "D"}
                         if finger_count == 5:
                             label = "5 fingers -> Previous"
@@ -294,11 +294,10 @@ class GestureEngine:
 
                 else:
                     self._gesture_buffer = []
-                    self._fist_buffer    = []
-                    self.socketio.emit('finger_display', {'fingers': '—'})
+                    self._thumb_buffer   = []
                     cv2.putText(
                         frame,
-                        "No hand detected | Show 1-4 fingers or ✊",
+                        "No hand detected | Show 1-4 fingers or 👍",
                         (10, 36),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.6, (60, 60, 220), 2,
                     )

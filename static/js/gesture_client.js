@@ -12,7 +12,7 @@
  *   3 fingers → Option C
  *   4 fingers → Option D
  *   5 fingers → Previous Question
- *   Fist      → Next / Submit
+ *   Thumb up  → Next / Submit
  */
 
 (function (root) {
@@ -24,7 +24,7 @@
 
     // Smoothing
     var SMOOTHING_FRAMES   = 15;          // Consecutive frames for finger-count lock
-    var FIST_SMOOTH_FRAMES = 12;          // Consecutive frames for fist lock
+    var THUMB_SMOOTH_FRAMES = 12;         // Consecutive frames for thumb-up lock
 
     // Cooldowns (seconds)
     var ANSWER_COOLDOWN = 1.5;
@@ -33,7 +33,7 @@
     /**
      * @param {Object} callbacks
      *   onGestureInput(option)  – option 1-4 confirmed
-     *   onGestureNext()         – fist confirmed
+     *   onGestureNext()         – thumb-up confirmed
      *   onGesturePrev()         – 5-finger confirmed
      *   onFingerDisplay(text)   – live finger-count display
      *   onError(message)        – when init fails
@@ -41,7 +41,7 @@
     function ClientGestureEngine(callbacks) {
         this.callbacks = callbacks || {};
         this._gestureBuffer = [];
-        this._fistBuffer    = [];
+        this._thumbBuffer   = [];
         this._lastAnswerTime = 0;
         this._lastNextTime   = 0;
         this.hands         = null;
@@ -112,14 +112,14 @@
         if (this._initFailed) return;
         this.active = true;
         this._gestureBuffer = [];
-        this._fistBuffer    = [];
+        this._thumbBuffer   = [];
         if (this.camera) this.camera.start();
     };
 
     ClientGestureEngine.prototype.stop = function () {
         this.active = false;
         this._gestureBuffer = [];
-        this._fistBuffer    = [];
+        this._thumbBuffer   = [];
         if (this.camera) this.camera.stop();
     };
 
@@ -145,8 +145,8 @@
         return count;
     };
 
-    ClientGestureEngine.prototype._isFist = function (landmarks) {
-        // A fist is defined as all 4 main fingers being folded.
+    ClientGestureEngine.prototype._isThumbUp = function (landmarks) {
+        var thumbRaised = landmarks[4].y < landmarks[2].y - 0.04;
         var fingersFolded = true;
         for (var i = 0; i < FINGER_TIPS.length; i++) {
             if (landmarks[FINGER_TIPS[i]].y < landmarks[FINGER_PIPS[i]].y) {
@@ -154,7 +154,7 @@
                 break;
             }
         }
-        return fingersFolded;
+        return thumbRaised && fingersFolded;
     };
 
     ClientGestureEngine.prototype._smoothGesture = function (count) {
@@ -169,12 +169,12 @@
         return null;
     };
 
-    ClientGestureEngine.prototype._smoothFist = function (isFist) {
-        this._fistBuffer.push(isFist);
-        if (this._fistBuffer.length > FIST_SMOOTH_FRAMES) this._fistBuffer.shift();
-        if (this._fistBuffer.length === FIST_SMOOTH_FRAMES) {
-            for (var i = 0; i < this._fistBuffer.length; i++) {
-                if (!this._fistBuffer[i]) return false;
+    ClientGestureEngine.prototype._smoothThumb = function (isUp) {
+        this._thumbBuffer.push(isUp);
+        if (this._thumbBuffer.length > THUMB_SMOOTH_FRAMES) this._thumbBuffer.shift();
+        if (this._thumbBuffer.length === THUMB_SMOOTH_FRAMES) {
+            for (var i = 0; i < this._thumbBuffer.length; i++) {
+                if (!this._thumbBuffer[i]) return false;
             }
             return true;
         }
@@ -200,7 +200,7 @@
         if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
             var landmarks   = results.multiHandLandmarks[0];
             var fingerCount = this._countFingers(landmarks);
-            var isFist      = this._isFist(landmarks);
+            var thumbUp     = this._isThumbUp(landmarks);
 
             // Draw hand landmarks on canvas
             if (typeof drawConnectors !== 'undefined') {
@@ -212,21 +212,21 @@
                               { color: '#00E68A', lineWidth: 1, radius: 3 });
             }
 
-            // ── Fist → next / submit ─────────────────────────────────
-            if (isFist) {
+            // ── Thumb-up → next / submit ─────────────────────────────────
+            if (thumbUp) {
                 this._gestureBuffer = [];
-                var fistConfirmed = this._smoothFist(true);
-                if (this.callbacks.onFingerDisplay) this.callbacks.onFingerDisplay('✊');
+                var thumbConfirmed = this._smoothThumb(true);
+                if (this.callbacks.onFingerDisplay) this.callbacks.onFingerDisplay('👍');
 
-                if (fistConfirmed && currentTime - this._lastNextTime > NEXT_COOLDOWN) {
+                if (thumbConfirmed && currentTime - this._lastNextTime > NEXT_COOLDOWN) {
                     this._lastNextTime = currentTime;
-                    this._fistBuffer   = [];
+                    this._thumbBuffer  = [];
                     if (this.callbacks.onGestureNext) this.callbacks.onGestureNext();
                 }
 
             // ── Finger count → select answer or previous ────────────────
             } else {
-                this._fistBuffer = [];
+                this._thumbBuffer = [];
                 if (this.callbacks.onFingerDisplay) this.callbacks.onFingerDisplay(String(fingerCount));
 
                 var confirmed = this._smoothGesture(fingerCount);
@@ -247,7 +247,7 @@
         } else {
             // No hand detected
             this._gestureBuffer = [];
-            this._fistBuffer    = [];
+            this._thumbBuffer   = [];
             if (this.callbacks.onFingerDisplay) this.callbacks.onFingerDisplay('—');
         }
 
