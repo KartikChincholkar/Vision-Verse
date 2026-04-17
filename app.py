@@ -34,7 +34,6 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 # ---------------------------------------------------------------------------
 DATABASE_URL = os.environ.get('DATABASE_URL')
 _use_db = False
-_db_initialized = False
 
 if DATABASE_URL:
     try:
@@ -43,13 +42,41 @@ if DATABASE_URL:
         # Render provides postgres:// but psycopg2 requires postgresql://
         if DATABASE_URL.startswith('postgres://'):
             DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
+
+        def _get_conn():
+            return psycopg2.connect(DATABASE_URL)
+
+        # Test connection & create table
+        _conn = _get_conn()
+        _cur = _conn.cursor()
+        _cur.execute("""
+            CREATE TABLE IF NOT EXISTS data_store (
+                key TEXT PRIMARY KEY,
+                value JSONB NOT NULL
+            )
+        """)
+        _conn.commit()
+        # Seed initial questions from local file if DB has none
+        _cur.execute("SELECT 1 FROM data_store WHERE key = 'questions'")
+        if not _cur.fetchone():
+            _qpath = os.path.join(DATA_DIR, 'questions.json')
+            if os.path.exists(_qpath):
+                with open(_qpath, 'r') as _f:
+                    _cur.execute(
+                        "INSERT INTO data_store (key, value) VALUES (%s, %s)",
+                        ('questions', psycopg2.extras.Json(json.load(_f)))
+                    )
+                    _conn.commit()
+        _cur.close()
+        _conn.close()
         _use_db = True
-    except ImportError:
-        print('psycopg2 not installed, using local JSON files')
+        print('\u2705 Using PostgreSQL for persistent data storage')
+    except Exception as _e:
+        print(f'\u26a0\ufe0f  Database not available ({_e}), using local JSON files')
         _use_db = False
 
 # ---------------------------------------------------------------------------
-# Gesture engine (optional - works without camera hardware)
+# Gesture engine (optional – works without camera hardware)
 # ---------------------------------------------------------------------------
 try:
     from gesture_engine import GestureEngine
@@ -64,45 +91,7 @@ except Exception:
 # ---------------------------------------------------------------------------
 
 if _use_db:
-    def _get_conn():
-        return psycopg2.connect(DATABASE_URL)
-
-    def _ensure_db():
-        """Lazily create table and seed questions on first use."""
-        global _db_initialized
-        if _db_initialized:
-            return
-        try:
-            conn = _get_conn()
-            cur = conn.cursor()
-            cur.execute("""
-                CREATE TABLE IF NOT EXISTS data_store (
-                    key TEXT PRIMARY KEY,
-                    value JSONB NOT NULL
-                )
-            """)
-            conn.commit()
-            # Seed initial questions from local file if DB has none
-            cur.execute("SELECT 1 FROM data_store WHERE key = 'questions'")
-            if not cur.fetchone():
-                qpath = os.path.join(DATA_DIR, 'questions.json')
-                if os.path.exists(qpath):
-                    with open(qpath, 'r') as f:
-                        cur.execute(
-                            "INSERT INTO data_store (key, value) VALUES (%s, %s)",
-                            ('questions', psycopg2.extras.Json(json.load(f)))
-                        )
-                        conn.commit()
-            cur.close()
-            conn.close()
-            _db_initialized = True
-            print('\u2705 Using PostgreSQL for persistent data storage')
-        except Exception as e:
-            print(f'\u26a0\ufe0f  Database init failed: {e}')
-            _db_initialized = True  # Don't retry on every request
-
     def _read_json(filename):
-        _ensure_db()
         key = filename.replace('.json', '')
         default = {} if filename == 'students.json' else []
         try:
@@ -117,7 +106,6 @@ if _use_db:
             return default
 
     def _write_json(filename, data):
-        _ensure_db()
         key = filename.replace('.json', '')
         conn = _get_conn()
         cur = conn.cursor()

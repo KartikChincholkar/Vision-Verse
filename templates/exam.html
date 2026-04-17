@@ -237,6 +237,8 @@
 
     // ── Voice Recognition ────────────────────────────────────────────────
     var recognition;
+    var _isSpeaking = false;  // true while TTS is reading aloud
+
     function startVoice() {
         var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SR) {
@@ -246,6 +248,7 @@
         recognition = new SR();
         recognition.continuous = true;
         recognition.interimResults = true;
+        recognition.lang = 'en-US';
 
         recognition.onresult = function (e) {
             var last = e.results[e.results.length - 1];
@@ -270,17 +273,60 @@
             }
         };
 
-        recognition.onend = function () { if (EXAM_MODE === 'voice') recognition.start(); };
-        recognition.onerror = function (e) {
-            if (e.error !== 'no-speech') document.getElementById('status-bar').textContent = '⚠️ Voice error: ' + e.error;
+        recognition.onend = function () {
+            // Only auto-restart if still in voice mode and not currently speaking TTS
+            if (EXAM_MODE !== 'voice') return;
+            if (_isSpeaking) return;  // speak() will restart us after TTS finishes
+            setTimeout(function () {
+                if (EXAM_MODE === 'voice' && !_isSpeaking) {
+                    try { recognition.start(); } catch (e) { /* already started */ }
+                }
+            }, 300);
         };
-        recognition.start();
+
+        recognition.onerror = function (e) {
+            // 'aborted' and 'no-speech' are expected during TTS playback — ignore
+            if (e.error === 'no-speech' || e.error === 'aborted') return;
+            document.getElementById('status-bar').textContent = '⚠️ Voice error: ' + e.error;
+        };
+
+        try { recognition.start(); } catch (e) {}
+    }
+
+    function _restartRecognition() {
+        if (EXAM_MODE !== 'voice' || !recognition) return;
+        setTimeout(function () {
+            try { recognition.start(); } catch (e) { /* already running */ }
+            document.getElementById('status-bar').textContent = '🎙️ Say your answer now';
+        }, 400);
     }
 
     function speak(text, cb) {
         window.speechSynthesis.cancel();
+        // Pause recognition while TTS plays to prevent mic interference
+        _isSpeaking = true;
+        if (recognition && EXAM_MODE === 'voice') {
+            try { recognition.stop(); } catch (e) {}
+        }
         var u = new SpeechSynthesisUtterance(text);
-        u.onend = cb;
+        u.onend = function () {
+            _isSpeaking = false;
+            // Restart recognition after TTS finishes
+            if (EXAM_MODE === 'voice') _restartRecognition();
+            if (cb) cb();
+        };
+        // Safety: if onend never fires (browser bug), restart after timeout
+        var safetyTimer = setTimeout(function () {
+            if (_isSpeaking) {
+                _isSpeaking = false;
+                if (EXAM_MODE === 'voice') _restartRecognition();
+            }
+        }, (text.length * 80) + 5000);  // rough estimate: ~80ms per char + 5s buffer
+        var origOnEnd = u.onend;
+        u.onend = function () {
+            clearTimeout(safetyTimer);
+            origOnEnd();
+        };
         window.speechSynthesis.speak(u);
     }
 
