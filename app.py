@@ -29,6 +29,53 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 
 # ---------------------------------------------------------------------------
+# Data Storage: PostgreSQL (cloud/Render) or JSON files (local dev)
+# Set the DATABASE_URL env var to enable persistent PostgreSQL storage.
+# ---------------------------------------------------------------------------
+DATABASE_URL = os.environ.get('DATABASE_URL')
+_use_db = False
+
+if DATABASE_URL:
+    try:
+        import psycopg2
+        import psycopg2.extras
+        # Render provides postgres:// but psycopg2 requires postgresql://
+        if DATABASE_URL.startswith('postgres://'):
+            DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
+
+        def _get_conn():
+            return psycopg2.connect(DATABASE_URL)
+
+        # Test connection & create table
+        _conn = _get_conn()
+        _cur = _conn.cursor()
+        _cur.execute("""
+            CREATE TABLE IF NOT EXISTS data_store (
+                key TEXT PRIMARY KEY,
+                value JSONB NOT NULL
+            )
+        """)
+        _conn.commit()
+        # Seed initial questions from local file if DB has none
+        _cur.execute("SELECT 1 FROM data_store WHERE key = 'questions'")
+        if not _cur.fetchone():
+            _qpath = os.path.join(DATA_DIR, 'questions.json')
+            if os.path.exists(_qpath):
+                with open(_qpath, 'r') as _f:
+                    _cur.execute(
+                        "INSERT INTO data_store (key, value) VALUES (%s, %s)",
+                        ('questions', psycopg2.extras.Json(json.load(_f)))
+                    )
+                    _conn.commit()
+        _cur.close()
+        _conn.close()
+        _use_db = True
+        print('\u2705 Using PostgreSQL for persistent data storage')
+    except Exception as _e:
+        print(f'\u26a0\ufe0f  Database not available ({_e}), using local JSON files')
+        _use_db = False
+
+# ---------------------------------------------------------------------------
 # Gesture engine (optional – works without camera hardware)
 # ---------------------------------------------------------------------------
 try:
@@ -43,17 +90,45 @@ except Exception:
 # Helpers
 # ---------------------------------------------------------------------------
 
-def _read_json(filename):
-    path = os.path.join(DATA_DIR, filename)
-    if not os.path.exists(path):
-        return {} if filename == 'students.json' else []
-    with open(path, 'r') as f:
-        return json.load(f)
+if _use_db:
+    def _read_json(filename):
+        key = filename.replace('.json', '')
+        default = {} if filename == 'students.json' else []
+        try:
+            conn = _get_conn()
+            cur = conn.cursor()
+            cur.execute("SELECT value FROM data_store WHERE key = %s", (key,))
+            row = cur.fetchone()
+            cur.close()
+            conn.close()
+            return row[0] if row else default
+        except Exception:
+            return default
 
-def _write_json(filename, data):
-    path = os.path.join(DATA_DIR, filename)
-    with open(path, 'w') as f:
-        json.dump(data, f, indent=2)
+    def _write_json(filename, data):
+        key = filename.replace('.json', '')
+        conn = _get_conn()
+        cur = conn.cursor()
+        cur.execute("""
+            INSERT INTO data_store (key, value) VALUES (%s, %s)
+            ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value
+        """, (key, psycopg2.extras.Json(data)))
+        conn.commit()
+        cur.close()
+        conn.close()
+
+else:
+    def _read_json(filename):
+        path = os.path.join(DATA_DIR, filename)
+        if not os.path.exists(path):
+            return {} if filename == 'students.json' else []
+        with open(path, 'r') as f:
+            return json.load(f)
+
+    def _write_json(filename, data):
+        path = os.path.join(DATA_DIR, filename)
+        with open(path, 'w') as f:
+            json.dump(data, f, indent=2)
 
 def _hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()

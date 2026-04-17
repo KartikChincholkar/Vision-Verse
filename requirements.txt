@@ -8,3 +8,4 @@ gunicorn
 bcrypt
 openpyxl
 pdfplumber
+psycopg2-binary
