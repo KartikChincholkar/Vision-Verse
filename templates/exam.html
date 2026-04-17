@@ -187,13 +187,18 @@
         document.getElementById('btn-prev').disabled = (currentIdx === 0);
         document.getElementById('status-bar').textContent = '';
 
+        // Read question aloud in both gesture and voice modes
+        var speech = 'Question ' + (currentIdx + 1) + '. ' + q.question + '. ';
+        for (var j = 0; j < keys.length; j++) {
+            speech += 'Option ' + keys[j] + ', ' + q.options[keys[j]] + '. ';
+        }
         if (EXAM_MODE === 'gesture') {
-            var speech = 'Question ' + (currentIdx + 1) + '. ' + q.question + '. ';
-            for (var j = 0; j < keys.length; j++) {
-                speech += 'Option ' + keys[j] + ', ' + q.options[keys[j]] + '. ';
-            }
             speak(speech, function () {
                 document.getElementById('status-bar').textContent = '✋ Show your fingers now';
+            });
+        } else if (EXAM_MODE === 'voice') {
+            speak(speech, function () {
+                document.getElementById('status-bar').textContent = '🎙️ Say your answer now';
             });
         }
     }
@@ -208,13 +213,14 @@
     }
 
     function nextQuestion() {
-        if (currentIdx < questions.length - 1) { currentIdx++; loadQuestion(); }
+        if (currentIdx < questions.length - 1) { window.speechSynthesis.cancel(); currentIdx++; loadQuestion(); }
     }
     function prevQuestion() {
-        if (currentIdx > 0) { currentIdx--; loadQuestion(); }
+        if (currentIdx > 0) { window.speechSynthesis.cancel(); currentIdx--; loadQuestion(); }
     }
 
     async function submitExam() {
+        window.speechSynthesis.cancel();  // Stop any ongoing TTS immediately
         var timeTaken = Math.round((Date.now() - examStartTime) / 1000);
         if (gestureEngine) gestureEngine.stop();
 
