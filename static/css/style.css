@@ -13,22 +13,22 @@
 }
 
 :root {
-    --bg: linear-gradient(135deg, #5b53ed, #7c3aed);
-    --bg-white: rgba(255, 255, 255, 0.15);
-    --bg-warm: rgba(255, 255, 255, 0.08);
-    --bg-hover: rgba(255, 255, 255, 0.2);
+    --bg: linear-gradient(135deg, #d5d5d5, #979797);
+    --bg-white: rgb(112, 112, 112);
+    --bg-warm: rgba(112, 112, 112);
+    --bg-hover: rgba(112, 112, 112);
 
-    --border: rgba(255, 255, 255, 0.25);
-    --border-dark: rgba(255, 255, 255, 0.35);
+    --border: rgb(0, 0, 0);
+    --border-dark: rgb(0, 0, 0);
 
     --ink: #000000;
     --ink-light: #000000;
-    --ink-muted: #dfb1f3;
+    --ink-muted: #000000;
     --ink-faint: #000000;
 
-    --accent: #a78bfa;
+    --accent: #000000;
     --accent-bg: rgba(0, 0, 0, 0.25);
-    --accent-border: rgba(167, 139, 250, 0.5);
+    --accent-border: rgba(0, 0, 0, 0.5);
 
     --green: #22c55e;
     --green-bg: rgba(34, 197, 94, 0.2);
@@ -38,13 +38,13 @@
     --red-bg: rgba(196, 1, 1, 0.2);
     --red-border: rgba(239, 68, 68, 0.5);
 
-    --amber: #f59e0b;
-    --amber-bg: rgba(245, 158, 11, 0.2);
-    --amber-border: rgba(245, 158, 11, 0.5);
+    --amber: #000000;
+    --amber-bg: rgba(0, 0, 0, 0.2);
+    --amber-border: rgba(0, 0, 0, 0.5);
 
-    --purple: #c4b5fd;
-    --purple-bg: rgba(196, 181, 253, 0.2);
-    --purple-border: rgba(196, 181, 253, 0.5);
+    --purple: #000000;
+    --purple-bg: rgba(0, 0, 0, 0.2);
+    --purple-border: rgba(0, 0, 0, 0.5);
 
     --radius: 12px;
     --radius-sm: 8px;
@@ -257,7 +257,7 @@ select.form-control option {
 }
 
 .btn-primary:hover {
-    background: #3c29a6;
+    background: #333333;
     box-shadow: var(--shadow);
 }
 
@@ -288,7 +288,7 @@ select.form-control option {
 }
 
 .btn-danger:hover {
-    background: #fee2e2;
+    background: #ff5757;
 }
 
 .btn-block {
@@ -1099,7 +1099,7 @@ select.form-control option {
 #app-loader {
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    background: linear-gradient(135deg, #c8c8c8, #adadad);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1120,7 +1120,7 @@ select.form-control option {
     width: 100%;
     height: 100%;
     border-radius: 100%;
-    border: 3px solid rgba(255,255,255,0.25);
+    border: 3px solid rgb(0, 0, 0);
 }
 
 /* 🔄 TEXT ROTATION (clockwise) */
@@ -1156,7 +1156,7 @@ select.form-control option {
     position: absolute;
     inset: 40px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.12);
+    background: rgb(87, 87, 87);
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -1182,7 +1182,7 @@ select.form-control option {
 /* TEXT */
 .loader-text {
     margin-top: 25px;
-    color: white;
+    color: rgb(0, 0, 0);
     font-weight: 600;
     font-size: 16px;
 }
