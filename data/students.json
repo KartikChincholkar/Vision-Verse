@@ -38,5 +38,15 @@
     "dob": "2003-08-05",
     "phone": "9999999999",
     "registered_at": "2026-04-08T10:30:51.053334"
+  },
+  "STU005": {
+    "id": "STU005",
+    "name": "john",
+    "email": "john@gmail.com",
+    "password_hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "disability_type": "Speech Impairment",
+    "dob": "2004-04-06",
+    "phone": "8600400360",
+    "registered_at": "2026-04-18T15:08:30.453060"
   }
 }
